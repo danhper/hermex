@@ -16,4 +16,11 @@ defmodule BuildyPush.Factory do
       name: sequence(:topic_name, &("topic-name-#{&1}"))
     }
   end
+
+  def device_factory do
+    %BuildyPush.Device{
+      app_id: insert(:gcm_app).id,
+      token: sequence(:device_token, &("device-token-#{&1}"))
+    }
+  end
 end
