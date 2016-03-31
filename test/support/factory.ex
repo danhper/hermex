@@ -10,4 +10,10 @@ defmodule BuildyPush.Factory do
       }
     }
   end
+
+  def topic_factory do
+    %BuildyPush.Topic{
+      name: sequence(:topic_name, &("topic-name-#{&1}"))
+    }
+  end
 end

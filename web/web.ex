@@ -36,6 +36,8 @@ defmodule BuildyPush.Web do
 
       import BuildyPush.Router.Helpers
       import BuildyPush.Gettext
+
+      alias BuildyPush.Controller.Utils
     end
   end
 

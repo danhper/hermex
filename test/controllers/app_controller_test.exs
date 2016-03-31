@@ -17,10 +17,11 @@ defmodule BuildyPush.AppControllerTest do
   test "shows chosen resource", %{conn: conn} do
     app = insert(:gcm_app)
     conn = get conn, app_path(conn, :show, app)
-    assert json_response(conn, 200)["data"] == %{"id" => app.id,
+    assert json_response(conn, 200)["data"] == %{
+      "id"       => app.id,
       "platform" => app.platform,
-      "name" => app.name,
-      "settings" => app.settings}
+      "name"     => app.name
+    }
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do

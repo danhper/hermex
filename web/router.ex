@@ -22,6 +22,7 @@ defmodule BuildyPush.Router do
   scope "/api", BuildyPush do
     pipe_through :api
 
-    resources "/app", AppController, except: [:new, :edit]
+    resources "/apps", AppController, except: [:new, :edit]
+    resources "/topics", TopicController, except: [:new, :edit, :update]
   end
 end

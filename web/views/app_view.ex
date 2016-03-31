@@ -12,7 +12,6 @@ defmodule BuildyPush.AppView do
   def render("app.json", %{app: app}) do
     %{id: app.id,
       platform: app.platform,
-      name: app.name,
-      settings: app.settings}
+      name: app.name}
   end
 end
