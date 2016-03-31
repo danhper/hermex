@@ -5,6 +5,7 @@
   "db_connection": {:hex, :db_connection, "0.2.4"},
   "decimal": {:hex, :decimal, "1.1.1"},
   "ecto": {:hex, :ecto, "1.1.5"},
+  "ex_machina": {:git, "https://github.com/thoughtbot/ex_machina.git", "384fbec9f32997a7d69bda07d74bbe8957c34c8c", []},
   "fs": {:hex, :fs, "0.9.2"},
   "gettext": {:hex, :gettext, "0.10.0"},
   "hackney": {:hex, :hackney, "1.5.7"},

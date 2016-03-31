@@ -26,6 +26,7 @@ defmodule BuildyPush.ConnCase do
       import Ecto.Query, only: [from: 1, from: 2]
 
       import BuildyPush.Router.Helpers
+      import BuildyPush.Factory
 
       # The default endpoint for testing
       @endpoint BuildyPush.Endpoint

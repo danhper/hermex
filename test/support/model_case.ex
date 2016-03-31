@@ -22,6 +22,7 @@ defmodule BuildyPush.ModelCase do
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
       import BuildyPush.ModelCase
+      import BuildyPush.Factory
     end
   end
 

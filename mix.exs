@@ -15,12 +15,16 @@ defmodule BuildyPush.Mixfile do
 
   def application do
     [mod: {BuildyPush, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+     applications: applications(Mix.env)]
   end
 
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
   defp elixirc_paths(_),     do: ["lib", "web"]
+
+  defp applications(:test), do: applications(:all) ++ [:ex_machina]
+  defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+                                :phoenix_ecto, :postgrex]
+
 
   defp deps do
     [{:phoenix, "~> 1.1.4"},
@@ -31,7 +35,8 @@ defmodule BuildyPush.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:vex, github: "tuvistavie/vex", branch: "add-type-validator"},
-     {:pushex, ">= 0.0.0"}]
+     {:pushex, ">= 0.0.0"},
+     {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end
 
   defp aliases do
