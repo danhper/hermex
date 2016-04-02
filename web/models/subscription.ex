@@ -14,5 +14,6 @@ defmodule BuildyPush.Subscription do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:topic_id, name: :subscriptions_topic_id_device_id_index)
   end
 end
