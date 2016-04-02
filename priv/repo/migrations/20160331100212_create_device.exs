@@ -3,7 +3,7 @@ defmodule BuildyPush.Repo.Migrations.CreateDevice do
 
   def change do
     create table(:devices) do
-      add :app_id, :integer, null: false
+      add :app_id, references(:apps, no_delete: :delete_all), null: false
       add :token, :string, null: false
       add :custom_data, :map
 

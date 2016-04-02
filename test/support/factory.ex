@@ -23,4 +23,10 @@ defmodule BuildyPush.Factory do
       token: sequence(:device_token, &("device-token-#{&1}"))
     }
   end
+
+  def subscription_factory do
+    %BuildyPush.Subscription{
+      topic_id: insert(:topic).id
+    }
+  end
 end
