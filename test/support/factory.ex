@@ -29,4 +29,11 @@ defmodule BuildyPush.Factory do
       topic_id: insert(:topic).id
     }
   end
+
+  def message_factory do
+    %BuildyPush.Message{
+      topic_id: insert(:topic).id,
+      data: %{body: "foobar"}
+    }
+  end
 end

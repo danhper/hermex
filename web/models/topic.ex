@@ -4,6 +4,9 @@ defmodule BuildyPush.Topic do
   schema "topics" do
     field :name, :string
 
+    has_many :messages, BuildyPush.Message
+    has_many :subcriptions, BuildyPush.Subscription
+
     timestamps
   end
 

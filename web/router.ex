@@ -15,8 +15,6 @@ defmodule BuildyPush.Router do
 
   scope "/", BuildyPush do
     pipe_through :browser
-
-    get "/", PageController, :index
   end
 
   scope "/api", BuildyPush do
@@ -25,6 +23,7 @@ defmodule BuildyPush.Router do
     resources "/apps", AppController, except: [:new, :edit]
     resources "/topics", TopicController, except: [:new, :edit, :update]
     resources "/devices", DeviceController, except: [:new, :edit]
-    resources "/subscriptions", SubscriptionController, except: [:new, :edit]
+    resources "/subscriptions", SubscriptionController, except: [:new, :edit, :update]
+    resources "/messages", MessageController, except: [:new, :edit, :update, :delete]
   end
 end

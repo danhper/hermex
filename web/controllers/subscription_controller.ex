@@ -3,7 +3,7 @@ defmodule BuildyPush.SubscriptionController do
 
   alias BuildyPush.Subscription
 
-  plug :scrub_params, "subscription" when action in [:create, :update]
+  plug :scrub_params, "subscription" when action in [:create]
 
   def index(conn, _params) do
     subscriptions = Repo.all(Subscription)

@@ -4,12 +4,20 @@ defmodule BuildyPush.Controller.Utils do
 
   def handle_save(result, conn, opts \\ [])
   def handle_save({:ok, model}, conn, opts) do
+    render_saved(conn, model, opts)
+  end
+  def handle_save({:error, changeset}, conn, _opts) do
+    render_unprocessable(conn, changeset)
+  end
+
+  def render_saved(conn, model, opts \\ []) do
     conn
     |> put_status(get_status(opts))
     |> add_location(model, opts)
     |> render("show.json", [{model_key(model, opts), model}])
   end
-  def handle_save({:error, changeset}, conn, _opts) do
+
+  def render_unprocessable(conn, changeset) do
     conn
     |> put_status(:unprocessable_entity)
     |> render(BuildyPush.ChangesetView, "error.json", changeset: changeset)

@@ -13,7 +13,7 @@ defmodule BuildyPush.TopicController do
   def create(conn, %{"topic" => topic_params}) do
     Topic.changeset(%Topic{}, topic_params)
     |> Repo.insert
-    |> Utils.handle_save(conn, location: &topic_path(conn, :show, &1), status: :created)
+    |> Utils.handle_save(conn, location: &topic_path(conn, :show, &1))
   end
 
   def show(conn, %{"id" => id}) do
