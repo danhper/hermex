@@ -12,7 +12,7 @@ defmodule BuildyPush.MessageWorker.Remote do
   end
 
   def handle_cast({:send_message, message}, state) do
-    message = BuildyPush.Repo.preload(message, topic: [subscriptions: :device])
+    message = BuildyPush.Repo.preload(message, [topic: [subscriptions: :device]])
     {:noreply, state}
   end
 end
