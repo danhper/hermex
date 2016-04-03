@@ -1,8 +1,8 @@
 defmodule BuildyPush.ErrorView do
   use BuildyPush.Web, :view
 
-  def render("400.json", assigns) do
-    %{errors: assigns}
+  def render("400.json", %{reason: reason}) do
+    %{errors: Exception.message(reason)}
   end
 
   def render("404.html", _assigns) do

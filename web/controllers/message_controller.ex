@@ -12,14 +12,15 @@ defmodule BuildyPush.MessageController do
 
   def create(conn, %{"message" => message_params}) do
     topic = find_topic(message_params)
-    Message.changeset(Ecto.build_assoc(topic, :messages), message_params)
+    message = Ecto.build_assoc(topic, :messages)
+    Message.changeset(message, message_params)
     |> Repo.insert
     |> case do
-         {:ok, model} ->
-           # process message
-           render_saved(conn, model, location: &message_path(conn, :show, &1))
+         {:ok, message} ->
+           BuildyPush.MessageWorker.send_message(message)
+           Utils.render_saved(conn, message, location: &message_path(conn, :show, &1))
          {:error, changeset} ->
-           render_unprocessable(conn, changeset)
+           Utils.render_unprocessable(conn, changeset)
     end
   end
 

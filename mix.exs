@@ -25,7 +25,6 @@ defmodule BuildyPush.Mixfile do
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                                 :phoenix_ecto, :postgrex]
 
-
   defp deps do
     [{:phoenix, "~> 1.1.4"},
      {:postgrex, ">= 0.0.0"},

@@ -11,8 +11,8 @@ defmodule BuildyPush.Message do
     timestamps
   end
 
-  @required_fields ~w(data sender_key)
-  @optional_fields ~w()
+  @required_fields ~w(data)
+  @optional_fields ~w(sender_key)
 
   def changeset(model, params \\ :empty) do
     model

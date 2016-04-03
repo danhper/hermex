@@ -12,7 +12,7 @@ defmodule BuildyPush do
       # Start the Ecto repository
       supervisor(BuildyPush.Repo, []),
       # Here you could define other workers and supervisors as children
-      # worker(BuildyPush.Worker, [arg1, arg2, arg3]),
+      worker(BuildyPush.MessageWorker, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
