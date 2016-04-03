@@ -13,7 +13,7 @@ defmodule BuildyPush.MessageController do
   def create(conn, %{"message" => message_params}) do
     topic = find_topic(message_params)
     message = Ecto.build_assoc(topic, :messages)
-    Message.changeset(message, message_params)
+    Message.changeset(message, :create, message_params)
     |> Repo.insert
     |> case do
          {:ok, message} ->

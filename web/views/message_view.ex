@@ -12,8 +12,8 @@ defmodule BuildyPush.MessageView do
   def render("message.json", %{message: message}) do
     %{id: message.id,
       topic_id: message.topic_id,
-      total_count: message.total_count,
-      success_count: message.success_count,
+      recipients_count: message.recipients_count,
+      delivered_count: message.delivered_count,
       data: message.data,
       sender_key: message.sender_key}
   end

@@ -12,8 +12,13 @@ defmodule BuildyPush.MessageWorker.RemoteTest do
   end
 
   test "send_message", %{topic: topic} do
-    notification = %{title: "Hello", body: "This is a notification"}
+    body = "This is a notification"
+    notification = %{title: "Hello", body: body}
     message = insert(:message, topic_id: topic.id, data: notification, sender_key: "that-would-be-me")
     assert {:noreply, %{}} = Remote.handle_cast({:send_message, message}, %{})
+    assert Repo.get!(BuildyPush.Message, message.id).recipients_count == 5
+    assert [{{:ok, res}, req, _}] = Pushex.Sandbox.wait_notifications
+    assert req.notification.body == body
+    assert res.success == 5
   end
 end

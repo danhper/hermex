@@ -16,6 +16,9 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :pushex,
+  app_manager_impl: BuildyPush.PushexAppManager
+
 import_config "#{Mix.env}.exs"
 
 config :phoenix, :generators,

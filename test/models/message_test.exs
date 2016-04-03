@@ -6,12 +6,12 @@ defmodule BuildyPush.MessageTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = Message.changeset(%Message{topic_id: 1}, params_for(:message))
+    changeset = Message.changeset(%Message{topic_id: 1}, :create, params_for(:message))
     assert changeset.valid?
   end
 
   test "changeset with invalid attributes" do
-    changeset = Message.changeset(%Message{}, @invalid_attrs)
+    changeset = Message.changeset(%Message{}, :create, @invalid_attrs)
     refute changeset.valid?
   end
 end
