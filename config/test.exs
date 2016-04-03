@@ -13,3 +13,7 @@ config :buildy_push, BuildyPush.Repo,
   database: "buildy_push_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+
+config :buildy_push,
+  message_worker_impl: BuildyPush.MessageWorker.Dummy

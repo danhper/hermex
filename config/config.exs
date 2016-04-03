@@ -8,6 +8,10 @@ config :buildy_push, BuildyPush.Endpoint,
   pubsub: [name: BuildyPush.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+
+config :buildy_push,
+  message_worker_impl: BuildyPush.MessageWorker.Remote
+
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]

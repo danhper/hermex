@@ -1,28 +1,22 @@
 defmodule BuildyPush do
   use Application
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
+  @extra_workers_mods Enum.map([:message_worker_impl], &Application.get_env(:buildy_push, &1))
+
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
-      # Start the endpoint when the application starts
       supervisor(BuildyPush.Endpoint, []),
-      # Start the Ecto repository
-      supervisor(BuildyPush.Repo, []),
-      # Here you could define other workers and supervisors as children
-      worker(BuildyPush.MessageWorker, []),
-    ]
+      supervisor(BuildyPush.Repo, [])
+    ] ++ Enum.filter_map(@extra_workers_mods,
+                         &function_exported?(&1, :start_link, 0),
+                         &(worker(&1, [])))
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: BuildyPush.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
   def config_change(changed, _new, removed) do
     BuildyPush.Endpoint.config_change(changed, removed)
     :ok

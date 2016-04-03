@@ -31,9 +31,12 @@ defmodule BuildyPush.MessageControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn, attrs: attrs} do
+    BuildyPush.MessageWorker.Dummy.request_notification(self())
     conn = post conn, message_path(conn, :create), message: attrs
-    assert json_response(conn, 201)["data"]["id"]
+    id = json_response(conn, 201)["data"]["id"]
+    assert id
     assert Repo.get_by(Message, Map.take(attrs, [:topic_id, :data]))
+    assert_received {:message_id, id}
   end
 
   test "fails with 400 when topic_id not passed", %{conn: conn} do

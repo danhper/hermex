@@ -5,7 +5,7 @@ defmodule BuildyPush.Topic do
     field :name, :string
 
     has_many :messages, BuildyPush.Message
-    has_many :subcriptions, BuildyPush.Subscription
+    has_many :subscriptions, BuildyPush.Subscription
 
     timestamps
   end
