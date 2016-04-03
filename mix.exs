@@ -23,7 +23,7 @@ defmodule BuildyPush.Mixfile do
 
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                                :phoenix_ecto, :postgrex]
+                                :phoenix_ecto, :postgrex, :pushex]
 
   defp deps do
     [{:phoenix, "~> 1.1.4"},
@@ -34,7 +34,7 @@ defmodule BuildyPush.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:vex, github: "tuvistavie/vex", branch: "add-type-validator"},
-     {:pushex, ">= 0.0.0"},
+     {:pushex, "~> 0.0.3"},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end
 

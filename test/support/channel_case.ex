@@ -31,7 +31,7 @@ defmodule BuildyPush.ChannelCase do
     end
   end
 
-  setup tags do
+  setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
   end
 end

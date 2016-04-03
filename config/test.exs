@@ -17,3 +17,7 @@ config :buildy_push, BuildyPush.Repo,
 
 config :buildy_push,
   message_worker_impl: BuildyPush.MessageWorker.Dummy
+
+
+config :pushex,
+  sandbox: true

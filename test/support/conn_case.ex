@@ -33,7 +33,7 @@ defmodule BuildyPush.ConnCase do
     end
   end
 
-  setup tags do
+  setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
     {:ok, conn: Phoenix.ConnTest.conn()}
   end
