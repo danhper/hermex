@@ -11,6 +11,7 @@ defmodule BuildyPush.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug BuildyPush.Plug.AuthenticateUser
   end
 
   scope "/", BuildyPush do

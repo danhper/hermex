@@ -33,6 +33,7 @@ defmodule BuildyPush.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
+     {:joken, "~> 1.1"},
      {:vex, github: "tuvistavie/vex", branch: "add-type-validator"},
      {:pushex, github: "tuvistavie/pushex"},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]

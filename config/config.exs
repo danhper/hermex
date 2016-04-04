@@ -12,6 +12,11 @@ config :buildy_push, BuildyPush.Endpoint,
 config :buildy_push,
   message_worker_impl: BuildyPush.MessageWorker.Remote
 
+
+config :buildy_push, :auth,
+  secret: "secret"
+
+
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]

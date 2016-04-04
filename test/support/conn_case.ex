@@ -35,6 +35,10 @@ defmodule BuildyPush.ConnCase do
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
-    {:ok, conn: Phoenix.ConnTest.conn()}
+    token = BuildyPush.Util.JWT.make_token(%{"iss" => "test_app"})
+    conn =
+      Phoenix.ConnTest.conn()
+      |> Plug.Conn.put_req_header("authorization", "Bearer #{token}")
+    {:ok, conn: conn}
   end
 end
