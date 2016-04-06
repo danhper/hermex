@@ -8,6 +8,7 @@ config :logger, level: :warn
 
 if url = System.get_env("DATABASE_URL") do
   config :buildy_push, BuildyPush.Repo,
+    adapter: Ecto.Adapters.Postgres,
     url: url,
     pool: Ecto.Adapters.SQL.Sandbox
 else
