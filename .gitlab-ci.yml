@@ -1,0 +1,18 @@
+image: elixir-git:1.2.4
+
+before_script:
+  - mix local.hex --force
+  - mix local.rebar --force
+  - mix deps.get
+
+stages:
+  - test
+
+test:
+  script:
+    - GIT_BRANCH=$CI_BUILD_REF_NAME mix test
+
+variables:
+  MIX_ENV: test
+  LANG: en_US.UTF-8
+  LC_ALL: en_US.UTF-8
