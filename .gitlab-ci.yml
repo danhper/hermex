@@ -1,5 +1,8 @@
 image: elixir-git:1.2.4
 
+services:
+  - postgres:9.4
+
 before_script:
   - mix local.hex --force
   - mix local.rebar --force

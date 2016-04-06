@@ -6,13 +6,19 @@ config :buildy_push, BuildyPush.Endpoint,
 
 config :logger, level: :warn
 
-config :buildy_push, BuildyPush.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "buildy_push_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+if url = System.get_env("DATABASE_URL") do
+  config :buildy_push, BuildyPush.Repo,
+    url: url,
+    pool: Ecto.Adapters.SQL.Sandbox
+else
+  config :buildy_push, BuildyPush.Repo,
+    adapter: Ecto.Adapters.Postgres,
+    username: "postgres",
+    password: "postgres",
+    database: "buildy_push_test",
+    hostname: "localhost",
+    pool: Ecto.Adapters.SQL.Sandbox
+end
 
 
 config :buildy_push,
