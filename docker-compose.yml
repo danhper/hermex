@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    env_file: .env
+    build: .
+    depends_on:
+     - postgres
+  postgres:
+    image: postgres:9.4
