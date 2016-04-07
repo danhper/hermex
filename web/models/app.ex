@@ -6,6 +6,8 @@ defmodule BuildyPush.App do
     field :name, :string
     field :settings, :map
 
+    has_many :devices, BuildyPush.Device
+
     timestamps
   end
 

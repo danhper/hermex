@@ -26,7 +26,8 @@ defmodule BuildyPush.Factory do
 
   def subscription_factory do
     %BuildyPush.Subscription{
-      topic_id: insert(:topic).id
+      topic_id: insert(:topic).id,
+      device_id: insert(:device).id
     }
   end
 

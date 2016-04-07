@@ -8,8 +8,8 @@ defmodule BuildyPush.Subscription do
     timestamps
   end
 
-  @required_fields ~w(topic_id)
-  @optional_fields ~w(device_id)
+  @required_fields ~w(topic_id device_id)
+  @optional_fields ~w()
 
   def changeset(model, params \\ :empty) do
     model

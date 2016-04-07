@@ -23,6 +23,7 @@ defmodule BuildyPush.Router do
 
     resources "/apps", AppController, except: [:new, :edit]
     resources "/topics", TopicController, except: [:new, :edit, :update]
+    get "/devices/find", DeviceController, :find
     resources "/devices", DeviceController, except: [:new, :edit]
     resources "/subscriptions", SubscriptionController, except: [:new, :edit, :update]
     resources "/messages", MessageController, except: [:new, :edit, :update, :delete]

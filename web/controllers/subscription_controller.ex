@@ -11,7 +11,9 @@ defmodule BuildyPush.SubscriptionController do
   end
 
   def create(conn, %{"subscription" => subscription_params}) do
-    Subscription.changeset(%Subscription{}, subscription_params)
+    find_topic(subscription_params)
+    |> Ecto.build_assoc(:subscriptions)
+    |> Subscription.changeset(subscription_params)
     |> Repo.insert
     |> Utils.handle_save(conn, location: &subscription_path(conn, :show, &1))
   end
@@ -26,4 +28,12 @@ defmodule BuildyPush.SubscriptionController do
     |> Repo.delete!
     send_resp(conn, :no_content, "")
   end
+
+  defp find_topic(%{"topic_id" => app_id}) do
+    Repo.get!(BuildyPush.Topic, app_id)
+  end
+  defp find_topic(%{"topic_name" => topic_name}) do
+    Repo.get_by!(BuildyPush.Topic, name: topic_name)
+  end
+  defp find_topic(_), do: raise BuildyPush.BadRequestException, "need topic_name or topic_id"
 end

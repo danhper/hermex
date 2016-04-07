@@ -36,8 +36,17 @@ defmodule BuildyPush.SubscriptionControllerTest do
     assert Repo.get_by(Subscription, Map.take(attrs, [:device_id, :topic_id]))
   end
 
+  test "creates and renders resource with topic_name", %{conn: conn, attrs: attrs} do
+    topic = Repo.get(BuildyPush.Topic, attrs.topic_id)
+    attrs = attrs |> Map.delete(:topic_id) |> Map.put(:topic_name, topic.name)
+    conn = post conn, subscription_path(conn, :create), subscription: attrs
+    assert json_response(conn, 201)["data"]["id"]
+    assert Repo.get_by(Subscription, Map.take(attrs, [:device_id, :topic_id]))
+  end
+
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, subscription_path(conn, :create), subscription: @invalid_attrs
+    attrs = Map.put(@invalid_attrs, :topic_id, insert(:topic).id)
+    conn = post conn, subscription_path(conn, :create), subscription: attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 

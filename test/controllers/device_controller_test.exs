@@ -18,7 +18,6 @@ defmodule BuildyPush.DeviceControllerTest do
     conn = get conn, device_path(conn, :show, device)
     assert json_response(conn, 200)["data"] == %{"id" => device.id,
       "app_id" => device.app_id,
-      "token" => device.token,
       "custom_data" => device.custom_data}
   end
 
@@ -34,8 +33,17 @@ defmodule BuildyPush.DeviceControllerTest do
     assert Repo.get_by(Device, Map.take(attrs, [:token, :app_id]))
   end
 
+  test "allows to send app_name and platform instead of app_id", %{conn: conn, attrs: attrs} do
+    app = Repo.get!(BuildyPush.App, attrs.app_id)
+    attrs = attrs |> Map.delete(:app_id) |> Map.merge(%{app_name: app.name, platform: app.platform})
+    conn = post conn, device_path(conn, :create), device: attrs
+    assert json_response(conn, 201)["data"]["id"]
+    assert Repo.get_by(Device, Map.take(attrs, [:token, :app_id]))
+  end
+
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, device_path(conn, :create), device: @invalid_attrs
+    params = Map.put(@invalid_attrs, :app_id, insert(:gcm_app).id)
+    conn = post conn, device_path(conn, :create), device: params
     assert json_response(conn, 422)["errors"] != %{}
   end
 
@@ -57,5 +65,26 @@ defmodule BuildyPush.DeviceControllerTest do
     conn = delete conn, device_path(conn, :delete, device)
     assert response(conn, 204)
     refute Repo.get(Device, device.id)
+  end
+
+  test "find with app_id and token", %{conn: conn} do
+    device = insert(:device)
+    device_id = device.id
+    conn = get conn, device_path(conn, :find, app_id: device.app_id, token: device.token)
+    assert %{"id" => ^device_id} = json_response(conn, 200)["data"]
+  end
+
+  test "find with app_name, platform and token", %{conn: conn} do
+    app = insert(:gcm_app)
+    device = insert(:device, app_id: app.id)
+    device_id = device.id
+    conn = get conn, device_path(conn, :find, app_name: app.name, platform: app.platform, token: device.token)
+    assert %{"id" => ^device_id} = json_response(conn, 200)["data"]
+  end
+
+  test "find with bad arguments", %{conn: conn} do
+    assert_raise Phoenix.ActionClauseError, fn ->
+      get conn, device_path(conn, :find, app_name: "foo")
+    end
   end
 end

@@ -12,7 +12,6 @@ defmodule BuildyPush.DeviceView do
   def render("device.json", %{device: device}) do
     %{id: device.id,
       app_id: device.app_id,
-      token: device.token,
       custom_data: device.custom_data}
   end
 end
