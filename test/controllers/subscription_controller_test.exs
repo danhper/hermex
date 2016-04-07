@@ -36,6 +36,15 @@ defmodule BuildyPush.SubscriptionControllerTest do
     assert Repo.get_by(Subscription, Map.take(attrs, [:device_id, :topic_id]))
   end
 
+  test "returns existing subscriptions if already exists", %{conn: conn, attrs: attrs} do
+    other_conn = conn
+    conn = post conn, subscription_path(conn, :create), subscription: attrs
+    assert json_response(conn, 201)["data"]["id"]
+    assert Repo.get_by(Subscription, Map.take(attrs, [:device_id, :topic_id]))
+    conn = post other_conn, subscription_path(other_conn, :create), subscription: attrs
+    assert json_response(conn, 200)["data"]["id"]
+  end
+
   test "creates and renders resource with topic_name", %{conn: conn, attrs: attrs} do
     topic = Repo.get(BuildyPush.Topic, attrs.topic_id)
     attrs = attrs |> Map.delete(:topic_id) |> Map.put(:topic_name, topic.name)

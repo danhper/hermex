@@ -11,11 +11,17 @@ defmodule BuildyPush.SubscriptionController do
   end
 
   def create(conn, %{"subscription" => subscription_params}) do
-    find_topic(subscription_params)
-    |> Ecto.build_assoc(:subscriptions)
-    |> Subscription.changeset(subscription_params)
-    |> Repo.insert
-    |> Utils.handle_save(conn, location: &subscription_path(conn, :show, &1))
+    topic = find_topic(subscription_params)
+    device_id = Map.get(subscription_params, "device_id")
+    if device_id && (subscription = Repo.get_by(Subscription, topic_id: topic.id, device_id: device_id)) do
+      Utils.render_saved(conn, subscription, status: :ok)
+    else
+      topic
+      |> Ecto.build_assoc(:subscriptions)
+      |> Subscription.changeset(subscription_params)
+      |> Repo.insert
+      |> Utils.handle_save(conn, location: &subscription_path(conn, :show, &1))
+    end
   end
 
   def show(conn, %{"id" => id}) do
