@@ -9,6 +9,10 @@ defmodule BuildyPush.ErrorView do
     %{error: "not authorized"}
   end
 
+  def render("404.json", _assigns) do
+    %{error: "not found"}
+  end
+
   def render("404.html", _assigns) do
     "Page not found"
   end
