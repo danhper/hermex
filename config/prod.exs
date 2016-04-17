@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :buildy_push, BuildyPush.Endpoint,
-  http: [port: {:system, "PORT"}],
+  http: [port: System.get_env("PORT") || raise("please provide PORT")],
   url: [host: System.get_env("URL_HOST"), scheme: System.get_env("URL_SCHEME")],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE") || raise("please provide SECRET_KEY_BASE")
