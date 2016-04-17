@@ -26,5 +26,6 @@
   "postgrex": {:hex, :postgrex, "0.11.1"},
   "pushex": {:git, "https://github.com/tuvistavie/pushex.git", "05c33ccbf8681ce4205479fc933456aba6fedd8d", []},
   "ranch": {:hex, :ranch, "1.2.1"},
+  "rollbax": {:hex, :rollbax, "0.5.4"},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0"},
   "vex": {:git, "https://github.com/tuvistavie/vex.git", "d1b98ad8a9532512bd436469abbdc80a7f076e9f", [branch: "add-type-validator"]}}

@@ -34,6 +34,7 @@ defmodule BuildyPush.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:joken, "~> 1.1"},
+     {:rollbax, "~> 0.5"},
      {:vex, github: "tuvistavie/vex", branch: "add-type-validator"},
      {:pushex, github: "tuvistavie/pushex"},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
