@@ -23,20 +23,21 @@ defmodule BuildyPush.Mixfile do
 
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                                :phoenix_ecto, :postgrex, :pushex]
+                                :phoenix_ecto, :postgrex, :pushex, :joken, :rollbax, :vex]
 
   defp deps do
     [{:phoenix, "~> 1.1.4"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_ecto, "~> 3.0.0-beta"},
      {:phoenix_html, "~> 2.4"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"},
-     {:joken, "~> 1.1"},
+     {:cowboy,  "~> 1.0"},
+     {:joken,   "~> 1.1"},
      {:rollbax, "~> 0.5"},
+     {:exrm,    "~> 1.0"},
      {:vex, github: "tuvistavie/vex", branch: "add-type-validator"},
      {:pushex, github: "tuvistavie/pushex"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end
 
