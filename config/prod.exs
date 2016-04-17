@@ -3,8 +3,8 @@ use Mix.Config
 config :buildy_push, BuildyPush.Endpoint,
   http: [port: System.get_env("PORT") || raise("please provide PORT")],
   url: [host: System.get_env("URL_HOST"), scheme: System.get_env("URL_SCHEME")],
-  cache_static_manifest: "priv/static/manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE") || raise("please provide SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE") || raise("please provide SECRET_KEY_BASE"),
+  server: true
 
 config :buildy_push, BuildyPush.Repo,
   adapter: Ecto.Adapters.Postgres,
