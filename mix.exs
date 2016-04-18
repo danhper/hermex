@@ -21,9 +21,12 @@ defmodule BuildyPush.Mixfile do
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
   defp elixirc_paths(_),     do: ["lib", "web"]
 
+  defp applications(:staging), do: applications(:prod)
+  defp applications(:prod), do: applications(:all) ++ [:rollbax]
+  defp applications(:dev), do: applications(:test)
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                                :phoenix_ecto, :postgrex, :pushex, :joken, :rollbax, :vex]
+                                :phoenix_ecto, :postgrex, :pushex, :joken, :vex]
 
   defp deps do
     [{:phoenix, "~> 1.1.4"},
