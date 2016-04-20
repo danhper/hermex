@@ -26,7 +26,7 @@ defmodule BuildyPush.Mixfile do
   defp applications(:dev), do: applications(:test)
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                                :phoenix_ecto, :postgrex, :pushex, :joken, :vex, :rollbax]
+                                :phoenix_ecto, :postgrex, :pushex, :joken, :vex]
 
   defp deps do
     [{:phoenix, "~> 1.1.4"},
