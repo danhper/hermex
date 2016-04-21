@@ -12,7 +12,7 @@ config :buildy_push, BuildyPush.Repo,
   pool_size: 20
 
 config :buildy_push, :auth,
-  secret: System.get_env("INTERNAL_JWT_SECRET") || raise("please provide INTERNAL_JWT_SECRET"),
+  secret: System.get_env("INTERNAL_JWT_SECRET") || raise("please provide INTERNAL_JWT_SECRET")
 
 config :logger,
   backends: [:console, Rollbax.Notifier],
