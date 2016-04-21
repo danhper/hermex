@@ -11,6 +11,9 @@ config :buildy_push, BuildyPush.Repo,
   url: System.get_env("DATABASE_URL") || raise("please provide DATABASE_URL"),
   pool_size: 20
 
+config :buildy_push, :auth,
+  secret: System.get_env("INTERNAL_JWT_SECRET") || raise("please provide INTERNAL_JWT_SECRET"),
+
 config :logger,
   backends: [:console, Rollbax.Notifier],
   level: :info
