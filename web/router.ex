@@ -16,6 +16,8 @@ defmodule BuildyPush.Router do
 
   scope "/", BuildyPush do
     pipe_through :browser
+
+    get "/ping", PingController, :ping
   end
 
   scope "/api", BuildyPush do
