@@ -11,6 +11,16 @@ defmodule BuildyPush.Factory do
     }
   end
 
+  def apns_app_factory do
+    %BuildyPush.App{
+      platform: "apns",
+      name: sequence(:apns_app, &("apns-app-#{&1}")),
+      settings: %{
+        "auth_key" => sequence(:apns_auth_key, &("apns-auth-key-#{&1}"))
+      }
+    }
+  end
+
   def topic_factory do
     %BuildyPush.Topic{
       name: sequence(:topic_name, &("topic-name-#{&1}"))

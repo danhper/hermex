@@ -2,7 +2,7 @@ use Mix.Config
 
 config :buildy_push, BuildyPush.Endpoint,
   http: [port: 9090],
-  debug_errors: true,
+  debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: []

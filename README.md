@@ -17,3 +17,15 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: http://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+
+## Apple certificate
+
+### .p12 -> .pem
+
+openssl pkcs12 -in cert.p12 -out apple_push_notification.pem -nodes -clcerts
+
+### .pem to key+cert
+
+openssl pkey -in foo.pem -out foo-key.pem
+openssl x509 -in foo.pem -out foo-cert.pem

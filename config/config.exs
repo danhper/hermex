@@ -8,6 +8,8 @@ config :buildy_push, BuildyPush.Endpoint,
   pubsub: [name: BuildyPush.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :buildy_push, BuildyPush.PushexAppManager,
+  cache_timeout: 3600
 
 config :buildy_push,
   message_worker_impl: BuildyPush.MessageWorker.Remote

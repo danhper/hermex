@@ -3,7 +3,7 @@ defmodule BuildyPush.Mixfile do
 
   def project do
     [app: :buildy_push,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -26,20 +26,20 @@ defmodule BuildyPush.Mixfile do
   defp applications(:dev), do: applications(:test)
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                                :phoenix_ecto, :postgrex, :pushex, :joken, :vex]
+                                :phoenix_ecto, :postgrex, :pushex, :joken, :tzdata]
 
   defp deps do
     [{:phoenix, "~> 1.1.4"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_ecto, "~> 3.0.0-beta"},
+     {:phoenix_ecto, "~> 3.0.0-rc.0"},
      {:phoenix_html, "~> 2.4"},
      {:gettext, "~> 0.9"},
      {:cowboy,  "~> 1.0"},
      {:joken,   "~> 1.1"},
      {:rollbax, "~> 0.5"},
      {:exrm,    "~> 1.0"},
-     {:vex, github: "tuvistavie/vex", branch: "add-type-validator"},
-     {:pushex, github: "tuvistavie/pushex"},
+     {:timex,   "~> 2.1.4"},
+     {:pushex,  github: "tuvistavie/pushex"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end

@@ -8,7 +8,8 @@ defmodule BuildyPush do
 
     children = [
       supervisor(BuildyPush.Endpoint, []),
-      supervisor(BuildyPush.Repo, [])
+      supervisor(BuildyPush.Repo, []),
+      worker(BuildyPush.PushexAppManager, [])
     ] ++ Enum.filter_map(@extra_workers_mods,
                          &function_exported?(&1, :start_link, 0),
                          &(worker(&1, [])))
