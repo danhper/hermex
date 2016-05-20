@@ -1,4 +1,4 @@
-%{"apns": {:git, "https://github.com/tuvistavie/apns4ex.git", "2f8701536ee59f722d711e6c89f94cf490fc9666", [branch: "dev"]},
+%{"apns": {:git, "https://github.com/tuvistavie/apns4ex.git", "85d2c95e485e7fb88053fcee3b76ed054ade9a37", [branch: "dev"]},
   "apns4ex": {:git, "https://github.com/tuvistavie/apns4ex.git", "153fa2f2e7e6247d43d76a686fb2a9894a06b5e4", []},
   "base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [:rebar], []},
   "bbmustache": {:hex, :bbmustache, "1.0.4", "7ba94f971c5afd7b6617918a4bb74705e36cab36eb84b19b6a1b7ee06427aa38", [:rebar], []},
