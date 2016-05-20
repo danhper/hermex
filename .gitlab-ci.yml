@@ -1,7 +1,7 @@
-image: elixir-ci:1.2.4
+image: elixir:1.2.4
 
 services:
-  - postgres:9.4
+  - postgres:9.5
 
 before_script:
   - mix local.hex --force
