@@ -40,7 +40,7 @@ defmodule BuildyPush.Mixfile do
      {:exrm,    "~> 1.0"},
      {:timex,   "~> 2.1.4"},
      {:pushex,  github: "tuvistavie/pushex"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:phoenix_live_reload, "~> 1.0", only: [:dev, :docker]},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end
 
