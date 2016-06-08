@@ -1,9 +1,11 @@
 defmodule BuildyPush.Mixfile do
   use Mix.Project
 
+  @version "0.0.3"
+
   def project do
     [app: :buildy_push,
-     version: "0.0.2",
+     version: @version,
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
