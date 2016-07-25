@@ -33,7 +33,7 @@
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []},
   "postgrex": {:hex, :postgrex, "0.11.2", "139755c1359d3c5c6d6e8b1ea72556d39e2746f61c6ddfb442813c91f53487e8", [:mix], [{:connection, "~> 1.0", [hex: :connection, optional: false]}, {:db_connection, "~> 1.0-rc", [hex: :db_connection, optional: false]}, {:decimal, "~> 1.0", [hex: :decimal, optional: false]}]},
   "providers": {:hex, :providers, "1.6.0", "db0e2f9043ae60c0155205fcd238d68516331d0e5146155e33d1e79dc452964a", [:rebar3], [{:getopt, "0.8.2", [hex: :getopt, optional: false]}]},
-  "pushex": {:git, "https://github.com/tuvistavie/pushex.git", "5fd6b89511b714f2cf06895730a43b92610e75f3", []},
+  "pushex": {:git, "https://github.com/tuvistavie/pushex.git", "a958cd77647f4929ea2216b4b17daae870467c0b", []},
   "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
   "relx": {:hex, :relx, "3.20.0", "b515b8317d25b3a1508699294c3d1fa6dc0527851dffc87446661bce21a36710", [:rebar3], [{:bbmustache, "1.0.4", [hex: :bbmustache, optional: false]}, {:cf, "0.2.1", [hex: :cf, optional: false]}, {:erlware_commons, "0.21.0", [hex: :erlware_commons, optional: false]}, {:getopt, "0.8.2", [hex: :getopt, optional: false]}, {:providers, "1.6.0", [hex: :providers, optional: false]}]},
   "rollbax": {:hex, :rollbax, "0.6.1", "412065ca6544a8a654dd636ea825f329b12a02f124f2c61058e49e5c7fc15040", [:mix], [{:hackney, "~> 1.1", [hex: :hackney, optional: false]}, {:poison, "~> 1.4 or ~> 2.0", [hex: :poison, optional: false]}]},

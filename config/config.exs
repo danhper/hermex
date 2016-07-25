@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :apns, pools: []
+
 config :buildy_push, BuildyPush.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
