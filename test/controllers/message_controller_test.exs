@@ -36,7 +36,7 @@ defmodule BuildyPush.MessageControllerTest do
     id = json_response(conn, 201)["data"]["id"]
     assert id
     assert Repo.get_by(Message, Map.take(attrs, [:topic_id, :data]))
-    assert_received {:message_id, id}
+    assert_received {:message_id, ^id}
   end
 
   test "fails with 400 when topic_id not passed", %{conn: conn} do

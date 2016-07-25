@@ -13,7 +13,8 @@ defmodule BuildyPush.SubscriptionController do
   def create(conn, %{"subscription" => subscription_params}) do
     topic = find_topic(subscription_params)
     device_id = Map.get(subscription_params, "device_id")
-    if device_id && (subscription = Repo.get_by(Subscription, topic_id: topic.id, device_id: device_id)) do
+    subscription = device_id && Repo.get_by(Subscription, topic_id: topic.id, device_id: device_id)
+    if subscription do
       Utils.render_saved(conn, subscription, status: :ok)
     else
       topic
