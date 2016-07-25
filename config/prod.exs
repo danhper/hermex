@@ -15,10 +15,10 @@ config :buildy_push, :auth,
   secret: System.get_env("INTERNAL_JWT_SECRET") || raise("please provide INTERNAL_JWT_SECRET")
 
 config :logger,
-  backends: [:console, Rollbax.Notifier],
+  backends: [:console, Rollbax.Logger],
   level: :info
 
-config :logger, Rollbax.Notifier,
+config :logger, Rollbax.Logger,
   level: :error
 
 config :rollbax,
