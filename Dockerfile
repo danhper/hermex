@@ -1,4 +1,4 @@
-FROM elixir:1.2.5
+FROM elixir:1.3
 
 ENV MIX_ENV docker
 RUN apt-get update -qq && apt-get install -y build-essential postgresql-client
