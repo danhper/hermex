@@ -1,7 +1,7 @@
 defmodule BuildyPush.Mixfile do
   use Mix.Project
 
-  @version "0.0.6"
+  @version "0.0.7"
 
   def project do
     [app: :buildy_push,
@@ -41,7 +41,7 @@ defmodule BuildyPush.Mixfile do
      {:rollbax, "~> 0.5"},
      {:exrm,    "~> 1.0"},
      {:timex,   "~> 2.1.4"},
-     {:pushex,  github: "tuvistavie/pushex"},
+     {:pushex,  "~> 0.1.0"},
      {:phoenix_live_reload, "~> 1.0", only: [:dev, :docker]},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end

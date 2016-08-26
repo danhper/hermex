@@ -26,12 +26,12 @@ defmodule BuildyPush.App do
   end
 
   defp validate_settings(changeset) do
-    if changeset.valid? &&
-         get_change(changeset, :settings) &&
-        (platform = get_change(changeset, :platform)) do
+    with true <- changeset.valid?,
+         settings when not is_nil(settings) <- get_change(changeset, :settings),
+         platform when not is_nil(platform) <- get_change(changeset, :platform) do
       validate_settings(changeset, String.to_atom(platform))
     else
-      changeset
+      _ -> changeset
     end
   end
 
