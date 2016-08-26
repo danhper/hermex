@@ -6,8 +6,8 @@ defmodule BuildyPush.AppController do
   plug :scrub_params, "app" when action in ~w(create update)a
 
   def index(conn, _params) do
-    app = Repo.all(App)
-    render(conn, "index.json", app: app)
+    apps = Repo.all(App)
+    render(conn, "index.json", apps: apps)
   end
 
   def create(conn, %{"app" => app_params}) do
@@ -18,6 +18,11 @@ defmodule BuildyPush.AppController do
 
   def show(conn, %{"id" => id}) do
     app = Repo.get!(App, id)
+    render(conn, "show.json", app: app)
+  end
+
+  def find(conn, %{"platform" => platform, "name" => name}) do
+    app = Repo.get_by!(App, platform: platform, name: name)
     render(conn, "show.json", app: app)
   end
 

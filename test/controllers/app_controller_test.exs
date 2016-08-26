@@ -27,6 +27,13 @@ defmodule BuildyPush.AppControllerTest do
       "settings" => %{"auth_key" => safe_auth_key}}
   end
 
+  test "find resource", %{conn: conn} do
+    app = insert(:gcm_app)
+    app_id = app.id
+    conn = get conn, app_path(conn, :find, "gcm", "#{app.name}")
+    assert %{"id" => ^app_id} = json_response(conn, 200)["data"]
+  end
+
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
       get conn, app_path(conn, :show, -1)

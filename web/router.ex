@@ -24,6 +24,9 @@ defmodule BuildyPush.Router do
     pipe_through :api
 
     resources "/apps", AppController, except: [:new, :edit]
+
+    get "/app/:platform/:name", AppController, :find
+
     resources "/topics", TopicController, except: [:new, :edit, :update]
     get "/devices/find", DeviceController, :find
     resources "/devices", DeviceController, except: [:new, :edit]

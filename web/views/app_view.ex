@@ -1,8 +1,8 @@
 defmodule BuildyPush.AppView do
   use BuildyPush.Web, :view
 
-  def render("index.json", %{app: app}) do
-    %{data: render_many(app, BuildyPush.AppView, "app.json")}
+  def render("index.json", %{apps: apps}) do
+    %{data: render_many(apps, BuildyPush.AppView, "app.json")}
   end
 
   def render("show.json", %{app: app}) do
