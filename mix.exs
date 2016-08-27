@@ -1,7 +1,7 @@
 defmodule BuildyPush.Mixfile do
   use Mix.Project
 
-  @version "0.0.10"
+  @version "0.0.11"
 
   def project do
     [app: :buildy_push,
@@ -29,7 +29,7 @@ defmodule BuildyPush.Mixfile do
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                                 :phoenix_ecto, :postgrex, :pushex, :joken, :tzdata, :timex,
-                                :scrivener_ecto]
+                                :phoenix_pubsub, :scrivener_ecto]
 
   defp deps do
     [{:phoenix, "~> 1.2"},
