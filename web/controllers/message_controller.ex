@@ -5,8 +5,8 @@ defmodule BuildyPush.MessageController do
 
   plug :scrub_params, "message" when action in [:create]
 
-  def index(conn, _params) do
-    messages = Repo.all(Message)
+  def index(conn, params) do
+    messages = Repo.paginate(Message, params)
     render(conn, "index.json", messages: messages)
   end
 

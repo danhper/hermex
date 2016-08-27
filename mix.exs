@@ -1,7 +1,7 @@
 defmodule BuildyPush.Mixfile do
   use Mix.Project
 
-  @version "0.0.9"
+  @version "0.0.10"
 
   def project do
     [app: :buildy_push,
@@ -28,20 +28,22 @@ defmodule BuildyPush.Mixfile do
   defp applications(:dev), do: applications(:test)
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                                :phoenix_ecto, :postgrex, :pushex, :joken, :tzdata, :timex]
+                                :phoenix_ecto, :postgrex, :pushex, :joken, :tzdata, :timex,
+                                :scrivener_ecto]
 
   defp deps do
-    [{:phoenix, "~> 1.1.4"},
+    [{:phoenix, "~> 1.2"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_ecto, "~> 3.0.0-rc.0"},
+     {:phoenix_ecto, "~> 3.0"},
      {:phoenix_html, "~> 2.4"},
      {:gettext, "~> 0.9"},
      {:cowboy,  "~> 1.0"},
-     {:joken,   "~> 1.1"},
+     {:joken,   "~> 1.2"},
      {:rollbax, "~> 0.5"},
      {:exrm,    "~> 1.0"},
-     {:timex,   "~> 2.1.4"},
-     {:pushex,  "~> 0.1.0"},
+     {:timex,   "~> 3.0"},
+     {:pushex,  "~> 0.1"},
+     {:scrivener_ecto, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: [:dev, :docker]},
      {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
   end

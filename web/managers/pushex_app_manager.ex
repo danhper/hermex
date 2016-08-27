@@ -36,7 +36,7 @@ defmodule BuildyPush.PushexAppManager do
       nil ->
         {:reply, nil, state}
       {app, expires_at} ->
-        if Timex.DateTime.compare(expires_at, Timex.DateTime.now) == 1 do
+        if Timex.compare(expires_at, Timex.now) == 1 do
           {:reply, app, state}
         else
           apps = Map.delete(state.apps, {platform, name})
@@ -46,7 +46,7 @@ defmodule BuildyPush.PushexAppManager do
   end
 
   def handle_call({:cache_app, platform, app}, _from, state) do
-    expires_at = Timex.DateTime.shift(Timex.DateTime.now, seconds: cache_timeout)
+    expires_at = Timex.shift(Timex.now, seconds: cache_timeout)
     apps = Map.put(state.apps, {platform, app.name}, {app, expires_at})
     {:reply, app, Map.put(state, :apps, apps)}
   end

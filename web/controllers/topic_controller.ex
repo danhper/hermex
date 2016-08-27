@@ -5,8 +5,8 @@ defmodule BuildyPush.TopicController do
 
   plug :scrub_params, "topic" when action in [:create]
 
-  def index(conn, _params) do
-    topics = Repo.all(Topic)
+  def index(conn, params) do
+    topics = Repo.paginate(Topic, params)
     render(conn, "index.json", topics: topics)
   end
 

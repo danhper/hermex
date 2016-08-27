@@ -5,8 +5,8 @@ defmodule BuildyPush.DeviceController do
 
   plug :scrub_params, "device" when action in [:create, :update]
 
-  def index(conn, _params) do
-    devices = Repo.all(Device)
+  def index(conn, params) do
+    devices = Repo.paginate(Device, params)
     render(conn, "index.json", devices: devices)
   end
 

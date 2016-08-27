@@ -5,8 +5,8 @@ defmodule BuildyPush.SubscriptionController do
 
   plug :scrub_params, "subscription" when action in [:create]
 
-  def index(conn, _params) do
-    subscriptions = Repo.all(Subscription)
+  def index(conn, params) do
+    subscriptions = Repo.paginate(Subscription, params)
     render(conn, "index.json", subscriptions: subscriptions)
   end
 

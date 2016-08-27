@@ -5,8 +5,8 @@ defmodule BuildyPush.AppController do
 
   plug :scrub_params, "app" when action in ~w(create update)a
 
-  def index(conn, _params) do
-    apps = Repo.all(App)
+  def index(conn, params) do
+    apps = Repo.paginate(App, params)
     render(conn, "index.json", apps: apps)
   end
 
