@@ -58,10 +58,13 @@ defmodule BuildyPush.PushexAppManager do
   end
 
   defp make_app(platform, app) do
-    attrs = Enum.map(app.settings, fn {k, v} -> {String.to_atom(k), v} end)
+    attrs = Enum.map(app.settings, &transform_setting/1)
             |> Enum.into(%{name: app.name})
     struct(base_app(platform), attrs)
   end
+
+  defp transform_setting({"env", value}), do: {:env, String.to_atom(value)}
+  defp transform_setting({key, value}), do: {String.to_atom(key), value}
 
   defp base_app("apns"), do: Pushex.APNS.App
   defp base_app("gcm"), do: Pushex.GCM.App
