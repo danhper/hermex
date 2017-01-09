@@ -8,15 +8,16 @@ defmodule BuildyPush.Message do
     field :sender_key, :string
     belongs_to :topic, BuildyPush.Topic
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(data)
-  @optional_fields ~w(sender_key)
+  @required_fields ~w(data)a
+  @optional_fields ~w(sender_key)a
 
   def changeset(model, action, params) do
     model
-    |> cast(params, @required_fields, optional_fields(action))
+    |> cast(params, @required_fields ++ optional_fields(action))
+    |> validate_required(@required_fields)
   end
 
   defp optional_fields(:internal_update) do

@@ -46,7 +46,7 @@ defmodule BuildyPush.PushexAppManager do
   end
 
   def handle_call({:cache_app, platform, app}, _from, state) do
-    expires_at = Timex.shift(Timex.now, seconds: cache_timeout)
+    expires_at = Timex.shift(Timex.now, seconds: cache_timeout())
     apps = Map.put(state.apps, {platform, app.name}, {app, expires_at})
     {:reply, app, Map.put(state, :apps, apps)}
   end
@@ -69,7 +69,7 @@ defmodule BuildyPush.PushexAppManager do
   defp base_app("apns"), do: Pushex.APNS.App
   defp base_app("gcm"), do: Pushex.GCM.App
 
-  defp cache_timeout do
+  defp cache_timeout() do
     Application.get_env(:buildy_push, __MODULE__)[:cache_timeout]
   end
 end

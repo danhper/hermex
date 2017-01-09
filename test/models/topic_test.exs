@@ -3,7 +3,6 @@ defmodule BuildyPush.TopicTest do
 
   alias BuildyPush.Topic
 
-  @valid_attrs %{name: "some content"}
   @invalid_attrs [
     %{}, # name is required
     %{name: "a"}, # name is more than 3 chars

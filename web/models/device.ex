@@ -9,15 +9,16 @@ defmodule BuildyPush.Device do
 
     belongs_to :app, BuildyPush.App
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(app_id token)
-  @optional_fields ~w(custom_data)
+  @required_fields ~w(app_id token)a
+  @optional_fields ~w(custom_data)a
 
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:token, name: :devices_app_id_token_index)
   end
 

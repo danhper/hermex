@@ -8,18 +8,19 @@ defmodule BuildyPush.App do
 
     has_many :devices, BuildyPush.Device
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(platform name settings)
-  @optional_fields ~w()
+  @required_fields ~w(platform name settings)a
+  @optional_fields ~w()a
 
   @gcm_required_fields ~w(auth_key)
   @apns_required_fields ~w(cert key)
 
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> validate_inclusion(:platform, ~w(gcm apns))
     |> validate_settings
     |> unique_constraint(:name, name: :apps_name_platform_index)
