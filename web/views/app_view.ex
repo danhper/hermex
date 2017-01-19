@@ -13,17 +13,6 @@ defmodule BuildyPush.AppView do
     %{id: app.id,
       platform: app.platform,
       name: app.name,
-      settings: render_settings(app.settings)}
-  end
-
-  defp render_settings(settings) do
-    Enum.map(settings, fn {k, v} ->
-      if k in BuildyPush.App.sensible_settings do
-        {k, "#{String.slice(v, 0..10)}*****#{String.slice(v, -5..-1)}"}
-      else
-        {k, v}
-      end
-    end)
-    |> Enum.into(%{})
+      settings: app.settings}
   end
 end
