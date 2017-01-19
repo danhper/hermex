@@ -27,8 +27,12 @@ defmodule BuildyPush.PushexAppManager do
     GenServer.call(__MODULE__, {:find_app, platform, name})
   end
 
-  def cache_app(platform, app) do
-    GenServer.call(__MODULE__, {:cache_app, platform, app})
+  def cache_app(app) do
+    GenServer.call(__MODULE__, {:cache_app, app})
+  end
+
+  def invalidate_app(app) do
+    GenServer.call(__MODULE__, {:invalidate_app, app})
   end
 
   def handle_call({:find_app, platform, name}, _from, state) do
@@ -39,21 +43,29 @@ defmodule BuildyPush.PushexAppManager do
         if Timex.compare(expires_at, Timex.now) == 1 do
           {:reply, app, state}
         else
-          apps = Map.delete(state.apps, {platform, name})
-          {:reply, nil, Map.put(state, :apps, apps)}
+          {:reply, nil, remove_app_from_state(state, app)}
         end
     end
   end
 
-  def handle_call({:cache_app, platform, app}, _from, state) do
+  def handle_call({:cache_app, app}, _from, state) do
     expires_at = Timex.shift(Timex.now, seconds: cache_timeout())
-    apps = Map.put(state.apps, {platform, app.name}, {app, expires_at})
+    apps = Map.put(state.apps, {app_platform(app), app.name}, {app, expires_at})
     {:reply, app, Map.put(state, :apps, apps)}
+  end
+
+  def handle_call({:invalidate_app, app}, _from, state) do
+    {:reply, :ok, remove_app_from_state(state, app)}
+  end
+
+  defp remove_app_from_state(state, app) do
+    apps = Map.delete(state.apps, {app_platform(app), app.name})
+    Map.put(state, :apps, apps)
   end
 
   defp fetch_app(platform, name) do
     if app = BuildyPush.Repo.get_by(BuildyPush.App, platform: platform, name: name) do
-      cache_app(platform, make_app(platform, app))
+      platform |> make_app(app) |> cache_app()
     end
   end
 
@@ -62,6 +74,10 @@ defmodule BuildyPush.PushexAppManager do
             |> Enum.into(%{name: app.name})
     struct(base_app(platform), attrs)
   end
+
+  defp app_platform(%Pushex.APNS.App{}), do: "apns"
+  defp app_platform(%Pushex.GCM.App{}), do: "gcm"
+  defp app_platform(%BuildyPush.App{platform: platform}), do: platform
 
   defp transform_setting({"env", value}), do: {:env, String.to_atom(value)}
   defp transform_setting({key, value}), do: {String.to_atom(key), value}

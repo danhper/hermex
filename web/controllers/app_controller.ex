@@ -30,6 +30,7 @@ defmodule BuildyPush.AppController do
     Repo.get!(App, id)
     |> App.changeset(app_params)
     |> Repo.update
+    |> invalidate_app()
     |> Utils.handle_save(conn)
   end
 
@@ -37,5 +38,11 @@ defmodule BuildyPush.AppController do
     Repo.get!(App, id)
     |> Repo.delete!
     send_resp(conn, :no_content, "")
+  end
+
+  defp invalidate_app({:error, _changeset} = result), do: result
+  defp invalidate_app({:ok, app} = result) do
+    BuildyPush.PushexAppManager.invalidate_app(app)
+    result
   end
 end
