@@ -1,31 +1,45 @@
-# BuildyPush
+# PushServer
 
-To start your Phoenix app:
+This module provides a push server that can handle the following things
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Start Phoenix endpoint with `mix phoenix.server`
+* Push to APNS and GCM
+* Dynamically register applications for APNS and GCM
+* Create topics
+* Subscribe clients to topics
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## HTTP API
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+You can check availability by sending messages to `/ping`.
 
-## Learn more
+### Pagination
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+### Applications
 
+#### `GET /api/apps`
 
-## Apple certificate
+List registered applications
 
-### .p12 -> .pem
-
-openssl pkcs12 -in cert.p12 -out apple_push_notification.pem -nodes -clcerts
-
-### .pem to key+cert
-
-openssl pkey -in foo.pem -out foo-key.pem
-openssl x509 -in foo.pem -out foo-cert.pem
+```json
+{
+  "data": [
+    {
+      "settings": {
+        "key": "the apns private key",
+        "env": "prod",
+        "cert": "the apns certificate"
+      },
+      "platform": "apns",
+      "name": "dummy",
+      "id": 1
+    },
+    {
+      "settings": {
+        "auth_key": "the gcm authentication token"
+      },
+      "platform": "gcm",
+      "name": "dummy",
+      "id": 2
+    }
+  ]
+}
+```

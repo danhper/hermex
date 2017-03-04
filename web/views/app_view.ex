@@ -1,12 +1,12 @@
 defmodule BuildyPush.AppView do
   use BuildyPush.Web, :view
 
-  def render("index.json", %{apps: apps}) do
-    %{data: render_many(apps, BuildyPush.AppView, "app.json")}
+  def render("index.json", %{apps: apps_paginator}) do
+    render_many_with_metadata(apps_paginator, __MODULE__, "app.json")
   end
 
   def render("show.json", %{app: app}) do
-    %{data: render_one(app, BuildyPush.AppView, "app.json")}
+    %{data: render_one(app, __MODULE__, "app.json")}
   end
 
   def render("app.json", %{app: app}) do

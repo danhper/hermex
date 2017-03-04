@@ -54,6 +54,8 @@ defmodule BuildyPush.Web do
       import BuildyPush.Router.Helpers
       import BuildyPush.ErrorHelpers
       import BuildyPush.Gettext
+
+      use BuildyPush.ViewHelpers
     end
   end
 
