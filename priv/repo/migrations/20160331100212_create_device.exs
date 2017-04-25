@@ -7,7 +7,7 @@ defmodule BuildyPush.Repo.Migrations.CreateDevice do
       add :token, :string, null: false
       add :custom_data, :map
 
-      timestamps
+      timestamps()
     end
 
     create index(:devices, [:app_id])

@@ -36,16 +36,16 @@ defmodule BuildyPush.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_ecto, "~> 3.0"},
      {:phoenix_html, "~> 2.4"},
-     {:gettext, "~> 0.9"},
-     {:cowboy,  "~> 1.0"},
-     {:joken,   "~> 1.2"},
+     {:gettext, "~> 0.13"},
+     {:cowboy,  "~> 1.1"},
+     {:joken,   "~> 1.4"},
      {:rollbax, "~> 0.5"},
      {:exrm,    "~> 1.0"},
      {:timex,   "~> 3.0"},
      {:pushex,  "~> 0.1"},
      {:scrivener_ecto, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: [:dev, :docker]},
-     {:ex_machina, github: "thoughtbot/ex_machina", only: [:dev, :test]}]
+     {:ex_machina, "~> 2.0", only: [:dev, :test]}]
   end
 
   defp aliases do

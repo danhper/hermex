@@ -9,7 +9,7 @@ defmodule BuildyPush.Repo.Migrations.CreateMessage do
       add :sender_key, :string
       add :topic_id, references(:topics), null: false
 
-      timestamps
+      timestamps()
     end
 
     create index(:messages, [:topic_id])

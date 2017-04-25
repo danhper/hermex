@@ -7,7 +7,7 @@ defmodule BuildyPush.Repo.Migrations.CreateApp do
       add :name, :string, null: false
       add :settings, :map
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:apps, [:name, :platform])

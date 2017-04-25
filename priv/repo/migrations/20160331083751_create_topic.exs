@@ -5,7 +5,7 @@ defmodule BuildyPush.Repo.Migrations.CreateTopic do
     create table(:topics) do
       add :name, :string, null: false
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:topics, [:name])
