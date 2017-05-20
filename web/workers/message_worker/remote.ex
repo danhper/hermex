@@ -26,7 +26,7 @@ defmodule BuildyPush.MessageWorker.Remote do
 
   defp send_messages({platform, app_name}, devices, message) do
     to = Enum.map(devices, &(&1.token))
-    Pushex.push(message.data, to: to, using: platform, with_app: app_name)
+    Pushex.push(message.data, to: to, using: platform, with_app: app_name, send_as_data: true)
   end
 
   defp update_message!(message, subscriptions) do
@@ -35,4 +35,3 @@ defmodule BuildyPush.MessageWorker.Remote do
     BuildyPush.Repo.update!(changeset)
   end
 end
-
