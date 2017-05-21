@@ -1,7 +1,7 @@
 defmodule BuildyPush.MessageWorker.RemoteTest do
   use BuildyPush.WorkerCase
 
-  alias BuildyPush.MessageWorker.Remote
+  alias BuildyPush.MessageProcessor.Worker.Remote
 
   setup do
     topic = insert(:topic)

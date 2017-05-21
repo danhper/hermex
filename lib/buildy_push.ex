@@ -9,10 +9,9 @@ defmodule BuildyPush do
     children = [
       supervisor(BuildyPush.Endpoint, []),
       supervisor(BuildyPush.Repo, []),
-      worker(BuildyPush.PushexAppManager, [])
-    ] ++ Enum.filter_map(@extra_workers_mods,
-                         &function_exported?(&1, :start_link, 0),
-                         &(worker(&1, [])))
+      worker(BuildyPush.PushexAppManager, []),
+      worker(BuildyPush.MessageProcessor.Dispatcher, [])
+    ] ++ Enum.map(@extra_workers_mods, &(worker(&1, [])))
 
     opts = [strategy: :one_for_one, name: BuildyPush.Supervisor]
     Supervisor.start_link(children, opts)

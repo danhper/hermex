@@ -6,6 +6,7 @@ defmodule BuildyPush.Message do
     field :recipients_count, :integer, default: 0
     field :delivered_count, :integer, default: 0
     field :sender_key, :string
+    field :scheduled_at, :utc_datetime
     belongs_to :topic, BuildyPush.Topic
 
     timestamps()

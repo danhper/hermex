@@ -1,4 +1,4 @@
-defmodule BuildyPush.MessageWorker do
+defmodule BuildyPush.MessageProcessor.Worker do
   @callback send_message(message :: Buildy.Message) :: :ok
 
   def send_message(message) do

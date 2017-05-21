@@ -14,7 +14,7 @@ config :buildy_push, BuildyPush.PushexAppManager,
   cache_timeout: 3600
 
 config :buildy_push,
-  message_worker_impl: BuildyPush.MessageWorker.Remote,
+  message_worker_impl: BuildyPush.MessageProcessor.Worker.Remote,
   ecto_repos: [BuildyPush.Repo]
 
 config :buildy_push, :auth,

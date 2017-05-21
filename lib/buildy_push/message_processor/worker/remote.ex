@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageWorker.Remote do
+defmodule BuildyPush.MessageProcessor.Worker.Remote do
   use GenServer
 
-  @behaviour BuildyPush.MessageWorker
+  @behaviour BuildyPush.MessageProcessor.Worker
 
   def start_link do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
