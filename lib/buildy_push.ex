@@ -1,17 +1,15 @@
 defmodule BuildyPush do
   use Application
 
-  @extra_workers_mods Enum.map([:message_worker_impl], &Application.get_env(:buildy_push, &1))
-
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
       supervisor(BuildyPush.Endpoint, []),
       supervisor(BuildyPush.Repo, []),
-      worker(BuildyPush.PushexAppManager, []),
-      worker(BuildyPush.MessageProcessor.Dispatcher, [])
-    ] ++ Enum.map(@extra_workers_mods, &(worker(&1, [])))
+      supervisor(BuildyPush.MessageProcessor.Supervisor, []),
+      worker(BuildyPush.PushexAppManager, [])
+    ]
 
     opts = [strategy: :one_for_one, name: BuildyPush.Supervisor]
     Supervisor.start_link(children, opts)

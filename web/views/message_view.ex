@@ -13,7 +13,6 @@ defmodule BuildyPush.MessageView do
     %{id: message.id,
       topic_id: message.topic_id,
       recipients_count: message.recipients_count,
-      delivered_count: message.delivered_count,
       data: message.data,
       sender_key: message.sender_key}
   end

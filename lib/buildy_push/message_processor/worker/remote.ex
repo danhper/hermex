@@ -30,7 +30,7 @@ defmodule BuildyPush.MessageProcessor.Worker.Remote do
   end
 
   defp update_message!(message, subscriptions) do
-    params = %{recipients_count: length(subscriptions)}
+    params = %{recipients_count: length(subscriptions), sent_at: Timex.now()}
     changeset = BuildyPush.Message.changeset(message, :internal_update, params)
     BuildyPush.Repo.update!(changeset)
   end
