@@ -7,13 +7,14 @@ defmodule BuildyPush.Message do
     field :sender_key, :string
     field :sent_at, :utc_datetime
     field :scheduled_at, :utc_datetime
+    field :options, :map, default: %{}
     belongs_to :topic, BuildyPush.Topic
 
     timestamps()
   end
 
   @required_fields ~w(data)a
-  @optional_fields ~w(sender_key)a
+  @optional_fields ~w(sender_key options scheduled_at)a
 
   def changeset(model, action, params) do
     model

@@ -42,7 +42,7 @@ defmodule BuildyPush.Mixfile do
      {:rollbax, "~> 0.5"},
      {:exrm,    "~> 1.0"},
      {:timex,   "~> 3.0"},
-     {:pushex,  "~> 0.1"},
+     {:pushex,  "~> 0.2"},
      {:scrivener_ecto, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: [:dev, :docker]},
      {:ex_machina, "~> 2.0", only: [:dev, :test]}]
