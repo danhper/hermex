@@ -1,7 +1,7 @@
 defmodule BuildyPush.MessageWorker.Dummy do
   use GenServer
 
-  @behaviour BuildyPush.MessageWorker
+  @behaviour BuildyPush.MessageProcessor.Worker
 
   def start_link do
     GenServer.start_link(__MODULE__, %{watcher: nil}, name: __MODULE__)

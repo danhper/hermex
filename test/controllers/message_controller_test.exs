@@ -19,7 +19,6 @@ defmodule BuildyPush.MessageControllerTest do
     assert json_response(conn, 200)["data"] == %{"id" => message.id,
       "topic_id" => message.topic_id,
       "recipients_count" => message.recipients_count,
-      "delivered_count" => message.delivered_count,
       "data" => Poison.decode!(Poison.encode!(message.data)),
       "sender_key" => message.sender_key}
   end

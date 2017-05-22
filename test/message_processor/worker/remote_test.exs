@@ -1,7 +1,7 @@
 defmodule BuildyPush.MessageWorker.RemoteTest do
   use BuildyPush.WorkerCase
 
-  alias BuildyPush.MessageWorker.Remote
+  alias BuildyPush.MessageProcessor.Worker.Remote
 
   setup do
     topic = insert(:topic)
@@ -16,7 +16,9 @@ defmodule BuildyPush.MessageWorker.RemoteTest do
     notification = %{title: "Hello", body: body}
     message = insert(:message, topic_id: topic.id, data: notification, sender_key: "that-would-be-me")
     assert {:noreply, %{}} = Remote.handle_cast({:send_message, message}, %{})
-    assert Repo.get!(BuildyPush.Message, message.id).recipients_count == 5
+    message = Repo.get!(BuildyPush.Message, message.id)
+    assert message.recipients_count == 5
+    assert Timex.compare(Timex.now(), message.sent_at, :seconds)
     assert [{{:ok, res}, req, _}] = Pushex.Sandbox.wait_notifications
     assert req.notification.body == body
     assert res.success == 5

@@ -1,9 +1,9 @@
-defmodule BuildyPush.MessageWorker.Remote do
+defmodule BuildyPush.MessageProcessor.Worker.Remote do
   use GenServer
 
-  @behaviour BuildyPush.MessageWorker
+  @behaviour BuildyPush.MessageProcessor.Worker
 
-  def start_link do
+  def start_link() do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
@@ -30,7 +30,7 @@ defmodule BuildyPush.MessageWorker.Remote do
   end
 
   defp update_message!(message, subscriptions) do
-    params = %{recipients_count: length(subscriptions)}
+    params = %{recipients_count: length(subscriptions), sent_at: Timex.now()}
     changeset = BuildyPush.Message.changeset(message, :internal_update, params)
     BuildyPush.Repo.update!(changeset)
   end

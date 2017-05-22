@@ -14,4 +14,12 @@ defmodule BuildyPush.MessageTest do
     changeset = Message.changeset(%Message{}, :create, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "pending query" do
+    _normal_message = insert(:message)
+    pending_message = insert(:message, scheduled_at: Timex.now())
+    _sent_message = insert(:message, scheduled_at: Timex.now(), sent_at: Timex.now())
+    pending_messages = BuildyPush.Repo.all(BuildyPush.Message.pending)
+    assert Enum.map(pending_messages, &(&1.id)) == [pending_message.id]
+  end
 end

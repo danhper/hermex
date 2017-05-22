@@ -2,6 +2,7 @@ defmodule BuildyPush.MessageController do
   use BuildyPush.Web, :controller
 
   alias BuildyPush.Message
+  alias BuildyPush.MessageProcessor.Dispatcher, as: MessageDispatcher
 
   plug :scrub_params, "message" when action in [:create]
 
@@ -17,7 +18,7 @@ defmodule BuildyPush.MessageController do
     |> Repo.insert
     |> case do
          {:ok, message} ->
-           BuildyPush.MessageWorker.send_message(message)
+           MessageDispatcher.process_message(message)
            Utils.render_saved(conn, message, location: &message_path(conn, :show, &1))
          {:error, changeset} ->
            Utils.render_unprocessable(conn, changeset)
