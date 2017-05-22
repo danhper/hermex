@@ -1,14 +1,14 @@
-FROM elixir:1.3
+FROM elixir:1.4
 
-ENV MIX_ENV docker
+ENV MIX_ENV prod
 RUN apt-get update -qq && apt-get install -y build-essential postgresql-client
 RUN mix local.hex --force
 RUN mix local.rebar --force
-RUN mkdir /push-server
-WORKDIR /push-server
-ADD mix.exs /push-server/mix.exs
-ADD mix.lock /push-server/mix.lock
+RUN mkdir /hermex
+WORKDIR /hermex
+COPY mix.exs /hermex/mix.exs
+COPY mix.lock /hermex/mix.lock
 RUN mix deps.get
 RUN mix compile
-ADD . /push-server
+COPY . /hermex
 RUN mix compile
