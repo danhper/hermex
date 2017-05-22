@@ -2,22 +2,22 @@ use Mix.Config
 
 config :apns, pools: []
 
-config :buildy_push, BuildyPush.Endpoint,
+config :hermex, Hermex.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "WmEoayLkaQTqdWnOTOm/qamFGHaDNHWwrHn7ZmMK58jkIvngCh63cah0XNoEuaIp",
   render_errors: [accepts: ~w(html json)],
-  pubsub: [name: BuildyPush.PubSub,
+  pubsub: [name: Hermex.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
-config :buildy_push, BuildyPush.PushexAppManager,
+config :hermex, Hermex.PushexAppManager,
   cache_timeout: 3600
 
-config :buildy_push,
-  message_worker_impl: BuildyPush.MessageProcessor.Worker.Remote,
-  ecto_repos: [BuildyPush.Repo]
+config :hermex,
+  message_worker_impl: Hermex.MessageProcessor.Worker.Remote,
+  ecto_repos: [Hermex.Repo]
 
-config :buildy_push, :auth,
+config :hermex, :auth,
   secret: "secret"
 
 config :logger, :console,
@@ -25,7 +25,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :pushex,
-  app_manager_impl: BuildyPush.PushexAppManager
+  app_manager_impl: Hermex.PushexAppManager
 
 import_config "#{Mix.env}.exs"
 

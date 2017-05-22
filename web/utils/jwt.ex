@@ -1,4 +1,4 @@
-defmodule BuildyPush.Util.JWT do
+defmodule Hermex.Util.JWT do
   def make_token(data, secret \\ default_secret()) do
     data
     |> Joken.token
@@ -20,6 +20,6 @@ defmodule BuildyPush.Util.JWT do
   end
 
   defp default_secret() do
-    Application.get_env(:buildy_push, :auth)[:secret]
+    Application.get_env(:hermex, :auth)[:secret]
   end
 end

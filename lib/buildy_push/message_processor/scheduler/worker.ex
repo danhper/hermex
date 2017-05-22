@@ -1,4 +1,4 @@
-defmodule BuildyPush.MessageProcessor.Scheduler.Worker do
+defmodule Hermex.MessageProcessor.Scheduler.Worker do
   use GenServer
 
   def start_link(message) do
@@ -21,10 +21,10 @@ defmodule BuildyPush.MessageProcessor.Scheduler.Worker do
   end
 
   defp do_send_message(message) do
-    BuildyPush.MessageProcessor.Worker.send_message(message)
+    Hermex.MessageProcessor.Worker.send_message(message)
   end
 
-  defp compute_milliseconds_timeout(%BuildyPush.Message{scheduled_at: scheduled_at}) do
+  defp compute_milliseconds_timeout(%Hermex.Message{scheduled_at: scheduled_at}) do
     scheduled_at
     |> Timex.diff(Timex.now())
     |> Integer.floor_div(1000)

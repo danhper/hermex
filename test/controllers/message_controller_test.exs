@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageControllerTest do
-  use BuildyPush.ConnCase
+defmodule Hermex.MessageControllerTest do
+  use Hermex.ConnCase
 
-  alias BuildyPush.Message
+  alias Hermex.Message
 
   setup %{conn: conn} do
     attrs = params_for(:message)
@@ -30,7 +30,7 @@ defmodule BuildyPush.MessageControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn, attrs: attrs} do
-    BuildyPush.MessageWorker.Dummy.request_notification(self())
+    Hermex.MessageWorker.Dummy.request_notification(self())
     conn = post conn, message_path(conn, :create), message: attrs
     id = json_response(conn, 201)["data"]["id"]
     assert id
@@ -39,7 +39,7 @@ defmodule BuildyPush.MessageControllerTest do
   end
 
   test "fails with 400 when topic_id not passed", %{conn: conn} do
-    assert_raise BuildyPush.BadRequestException, fn ->
+    assert_raise Hermex.BadRequestException, fn ->
       post conn, message_path(conn, :create), message: %{}
     end
   end

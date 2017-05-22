@@ -1,4 +1,4 @@
-defmodule BuildyPush.ErrorHelpers do
+defmodule Hermex.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -19,13 +19,13 @@ defmodule BuildyPush.ErrorHelpers do
   """
   def translate_error({msg, opts}) do
     if count = opts[:count] do
-      Gettext.dngettext(BuildyPush.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Hermex.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(BuildyPush.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Hermex.Gettext, "errors", msg, opts)
     end
   end
 
   def translate_error(msg) do
-    Gettext.dgettext(BuildyPush.Gettext, "errors", msg)
+    Gettext.dgettext(Hermex.Gettext, "errors", msg)
   end
 end

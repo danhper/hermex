@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageProcessor.Worker.Remote do
+defmodule Hermex.MessageProcessor.Worker.Remote do
   use GenServer
 
-  @behaviour BuildyPush.MessageProcessor.Worker
+  @behaviour Hermex.MessageProcessor.Worker
 
   def start_link() do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
@@ -12,7 +12,7 @@ defmodule BuildyPush.MessageProcessor.Worker.Remote do
   end
 
   def handle_cast({:send_message, message}, state) do
-    message = BuildyPush.Repo.preload(message, [topic: [subscriptions: [device: :app]]])
+    message = Hermex.Repo.preload(message, [topic: [subscriptions: [device: :app]]])
     subscriptions = message.topic.subscriptions
 
     subscriptions
@@ -33,7 +33,7 @@ defmodule BuildyPush.MessageProcessor.Worker.Remote do
 
   defp update_message!(message, subscriptions) do
     params = %{recipients_count: length(subscriptions), sent_at: Timex.now()}
-    changeset = BuildyPush.Message.changeset(message, :internal_update, params)
-    BuildyPush.Repo.update!(changeset)
+    changeset = Hermex.Message.changeset(message, :internal_update, params)
+    Hermex.Repo.update!(changeset)
   end
 end

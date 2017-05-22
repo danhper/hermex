@@ -1,7 +1,7 @@
-defmodule BuildyPush.TopicController do
-  use BuildyPush.Web, :controller
+defmodule Hermex.TopicController do
+  use Hermex.Web, :controller
 
-  alias BuildyPush.Topic
+  alias Hermex.Topic
 
   plug :scrub_params, "topic" when action in [:create]
 

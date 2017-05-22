@@ -1,14 +1,14 @@
-defmodule BuildyPush.Plug.AuthenticateUser do
+defmodule Hermex.Plug.AuthenticateUser do
   @behaviour Plug
 
   import Plug.Conn
 
-  alias BuildyPush.Util.JWT
+  alias Hermex.Util.JWT
 
   def init(opts) do
     opts
     |> Enum.into(%{})
-    |> Map.put_new(:secret, Application.get_env(:buildy_push, :auth)[:secret])
+    |> Map.put_new(:secret, Application.get_env(:hermex, :auth)[:secret])
   end
 
   def call(conn, opts) do
@@ -43,7 +43,7 @@ defmodule BuildyPush.Plug.AuthenticateUser do
   defp render_unauthorized(conn) do
     conn
     |> put_status(:unauthorized)
-    |> Phoenix.Controller.render(BuildyPush.ErrorView, "401.json")
+    |> Phoenix.Controller.render(Hermex.ErrorView, "401.json")
     |> halt
   end
 end

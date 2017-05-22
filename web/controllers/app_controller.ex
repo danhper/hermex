@@ -1,7 +1,7 @@
-defmodule BuildyPush.AppController do
-  use BuildyPush.Web, :controller
+defmodule Hermex.AppController do
+  use Hermex.Web, :controller
 
-  alias BuildyPush.App
+  alias Hermex.App
 
   plug :scrub_params, "app" when action in ~w(create update)a
 
@@ -42,7 +42,7 @@ defmodule BuildyPush.AppController do
 
   defp invalidate_app({:error, _changeset} = result), do: result
   defp invalidate_app({:ok, app} = result) do
-    BuildyPush.PushexAppManager.invalidate_app(app)
+    Hermex.PushexAppManager.invalidate_app(app)
     result
   end
 end

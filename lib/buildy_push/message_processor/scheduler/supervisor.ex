@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageProcessor.Scheduler.Supervisor do
+defmodule Hermex.MessageProcessor.Scheduler.Supervisor do
   use Supervisor
 
-  alias BuildyPush.MessageProcessor.Scheduler.Worker, as: SchedulerWorker
+  alias Hermex.MessageProcessor.Scheduler.Worker, as: SchedulerWorker
 
   def start_link() do
     Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)
@@ -15,7 +15,7 @@ defmodule BuildyPush.MessageProcessor.Scheduler.Supervisor do
     opts = [strategy: :simple_one_for_one,
             max_restarts: 5,
             max_seconds: 60,
-            name: BuildyPush.MessageProcessor.Scheduler.Supervisor]
+            name: Hermex.MessageProcessor.Scheduler.Supervisor]
     supervise(children, opts)
   end
 end

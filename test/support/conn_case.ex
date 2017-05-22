@@ -1,4 +1,4 @@
-defmodule BuildyPush.ConnCase do
+defmodule Hermex.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,22 +20,22 @@ defmodule BuildyPush.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias BuildyPush.Repo
+      alias Hermex.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import BuildyPush.Router.Helpers
-      import BuildyPush.Factory
+      import Hermex.Router.Helpers
+      import Hermex.Factory
 
       # The default endpoint for testing
-      @endpoint BuildyPush.Endpoint
+      @endpoint Hermex.Endpoint
     end
   end
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
-    token = BuildyPush.Util.JWT.make_token(%{"iss" => "test_app"})
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Hermex.Repo)
+    token = Hermex.Util.JWT.make_token(%{"iss" => "test_app"})
     conn =
       Phoenix.ConnTest.build_conn()
       |> Plug.Conn.put_req_header("authorization", "Bearer #{token}")

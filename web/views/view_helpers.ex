@@ -1,4 +1,4 @@
-defmodule BuildyPush.ViewHelpers do
+defmodule Hermex.ViewHelpers do
   defmacro __using__(_opts) do
     quote do
       import unquote(__MODULE__)

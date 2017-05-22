@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageTest do
-  use BuildyPush.ModelCase
+defmodule Hermex.MessageTest do
+  use Hermex.ModelCase
 
-  alias BuildyPush.Message
+  alias Hermex.Message
 
   @invalid_attrs %{}
 
@@ -19,7 +19,7 @@ defmodule BuildyPush.MessageTest do
     _normal_message = insert(:message)
     pending_message = insert(:message, scheduled_at: Timex.now())
     _sent_message = insert(:message, scheduled_at: Timex.now(), sent_at: Timex.now())
-    pending_messages = BuildyPush.Repo.all(BuildyPush.Message.pending)
+    pending_messages = Hermex.Repo.all(Hermex.Message.pending)
     assert Enum.map(pending_messages, &(&1.id)) == [pending_message.id]
   end
 end

@@ -1,7 +1,7 @@
-defmodule BuildyPush.DeviceController do
-  use BuildyPush.Web, :controller
+defmodule Hermex.DeviceController do
+  use Hermex.Web, :controller
 
-  alias BuildyPush.Device
+  alias Hermex.Device
 
   plug :scrub_params, "device" when action in [:create, :update]
 
@@ -46,10 +46,10 @@ defmodule BuildyPush.DeviceController do
   end
 
   defp find_app(%{"app_id" => app_id}) do
-    Repo.get!(BuildyPush.App, app_id)
+    Repo.get!(Hermex.App, app_id)
   end
   defp find_app(%{"app_name" => app_name, "platform" => platform}) do
-    Repo.get_by!(BuildyPush.App, name: app_name, platform: platform)
+    Repo.get_by!(Hermex.App, name: app_name, platform: platform)
   end
-  defp find_app(_), do: raise BuildyPush.BadRequestException, "need app_name and platform or app_id"
+  defp find_app(_), do: raise Hermex.BadRequestException, "need app_name and platform or app_id"
 end

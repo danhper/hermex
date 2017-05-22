@@ -1,4 +1,4 @@
-defmodule BuildyPush.ModelCase do
+defmodule Hermex.ModelCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -16,18 +16,18 @@ defmodule BuildyPush.ModelCase do
 
   using do
     quote do
-      alias BuildyPush.Repo
+      alias Hermex.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
-      import BuildyPush.ModelCase
-      import BuildyPush.Factory
+      import Hermex.ModelCase
+      import Hermex.Factory
     end
   end
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Hermex.Repo)
   end
 
   def errors_on(model, data) do

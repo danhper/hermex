@@ -1,7 +1,7 @@
-defmodule BuildyPush.SubscriptionControllerTest do
-  use BuildyPush.ConnCase
+defmodule Hermex.SubscriptionControllerTest do
+  use Hermex.ConnCase
 
-  alias BuildyPush.Subscription
+  alias Hermex.Subscription
 
   @invalid_attrs %{}
 
@@ -46,7 +46,7 @@ defmodule BuildyPush.SubscriptionControllerTest do
   end
 
   test "creates and renders resource with topic_name", %{conn: conn, attrs: attrs} do
-    topic = Repo.get(BuildyPush.Topic, attrs.topic_id)
+    topic = Repo.get(Hermex.Topic, attrs.topic_id)
     attrs = attrs |> Map.delete(:topic_id) |> Map.put(:topic_name, topic.name)
     conn = post conn, subscription_path(conn, :create), subscription: attrs
     assert json_response(conn, 201)["data"]["id"]

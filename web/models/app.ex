@@ -1,12 +1,12 @@
-defmodule BuildyPush.App do
-  use BuildyPush.Web, :model
+defmodule Hermex.App do
+  use Hermex.Web, :model
 
   schema "apps" do
     field :platform, :string
     field :name, :string
     field :settings, :map
 
-    has_many :devices, BuildyPush.Device
+    has_many :devices, Hermex.Device
 
     timestamps()
   end

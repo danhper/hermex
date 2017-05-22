@@ -1,12 +1,12 @@
-defmodule BuildyPush.MessageView do
-  use BuildyPush.Web, :view
+defmodule Hermex.MessageView do
+  use Hermex.Web, :view
 
   def render("index.json", %{messages: messages}) do
-    %{data: render_many(messages, BuildyPush.MessageView, "message.json")}
+    %{data: render_many(messages, Hermex.MessageView, "message.json")}
   end
 
   def render("show.json", %{message: message}) do
-    %{data: render_one(message, BuildyPush.MessageView, "message.json")}
+    %{data: render_one(message, Hermex.MessageView, "message.json")}
   end
 
   def render("message.json", %{message: message}) do

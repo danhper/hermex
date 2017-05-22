@@ -1,5 +1,5 @@
-defmodule BuildyPush.Router do
-  use BuildyPush.Web, :router
+defmodule Hermex.Router do
+  use Hermex.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,16 +11,16 @@ defmodule BuildyPush.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug BuildyPush.Plug.AuthenticateUser
+    plug Hermex.Plug.AuthenticateUser
   end
 
-  scope "/", BuildyPush do
+  scope "/", Hermex do
     pipe_through :browser
 
     get "/ping", PingController, :ping
   end
 
-  scope "/api", BuildyPush do
+  scope "/api", Hermex do
     pipe_through :api
 
     resources "/apps", AppController, except: [:new, :edit]

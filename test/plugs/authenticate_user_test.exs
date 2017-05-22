@@ -1,10 +1,10 @@
-defmodule BuildyPush.Plug.AuthenticateUserTest do
+defmodule Hermex.Plug.AuthenticateUserTest do
   require Logger
 
-  use BuildyPush.ConnCase
+  use Hermex.ConnCase
 
-  alias BuildyPush.Plug.AuthenticateUser
-  alias BuildyPush.Util.JWT
+  alias Hermex.Plug.AuthenticateUser
+  alias Hermex.Util.JWT
 
   @secret "foobar"
 

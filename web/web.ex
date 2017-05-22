@@ -1,12 +1,12 @@
-defmodule BuildyPush.Web do
+defmodule Hermex.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use BuildyPush.Web, :controller
-      use BuildyPush.Web, :view
+      use Hermex.Web, :controller
+      use Hermex.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,14 +30,14 @@ defmodule BuildyPush.Web do
     quote do
       use Phoenix.Controller
 
-      alias BuildyPush.Repo
+      alias Hermex.Repo
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import BuildyPush.Router.Helpers
-      import BuildyPush.Gettext
+      import Hermex.Router.Helpers
+      import Hermex.Gettext
 
-      alias BuildyPush.Controller.Utils
+      alias Hermex.Controller.Utils
     end
   end
 
@@ -51,11 +51,11 @@ defmodule BuildyPush.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import BuildyPush.Router.Helpers
-      import BuildyPush.ErrorHelpers
-      import BuildyPush.Gettext
+      import Hermex.Router.Helpers
+      import Hermex.ErrorHelpers
+      import Hermex.Gettext
 
-      use BuildyPush.ViewHelpers
+      use Hermex.ViewHelpers
     end
   end
 
@@ -69,10 +69,10 @@ defmodule BuildyPush.Web do
     quote do
       use Phoenix.Channel
 
-      alias BuildyPush.Repo
+      alias Hermex.Repo
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
-      import BuildyPush.Gettext
+      import Hermex.Gettext
     end
   end
 

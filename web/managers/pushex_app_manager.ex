@@ -1,4 +1,4 @@
-defmodule BuildyPush.PushexAppManager do
+defmodule Hermex.PushexAppManager do
   @behaviour Pushex.AppManager
 
   use GenServer
@@ -64,7 +64,7 @@ defmodule BuildyPush.PushexAppManager do
   end
 
   defp fetch_app(platform, name) do
-    if app = BuildyPush.Repo.get_by(BuildyPush.App, platform: platform, name: name) do
+    if app = Hermex.Repo.get_by(Hermex.App, platform: platform, name: name) do
       platform |> make_app(app) |> cache_app()
     end
   end
@@ -77,7 +77,7 @@ defmodule BuildyPush.PushexAppManager do
 
   defp app_platform(%Pushex.APNS.App{}), do: "apns"
   defp app_platform(%Pushex.GCM.App{}), do: "gcm"
-  defp app_platform(%BuildyPush.App{platform: platform}), do: platform
+  defp app_platform(%Hermex.App{platform: platform}), do: platform
 
   defp transform_setting({"env", value}), do: {:env, String.to_atom(value)}
   defp transform_setting({key, value}), do: {String.to_atom(key), value}
@@ -86,6 +86,6 @@ defmodule BuildyPush.PushexAppManager do
   defp base_app("gcm"), do: Pushex.GCM.App
 
   defp cache_timeout() do
-    Application.get_env(:buildy_push, __MODULE__)[:cache_timeout]
+    Application.get_env(:hermex, __MODULE__)[:cache_timeout]
   end
 end

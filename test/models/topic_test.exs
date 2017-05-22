@@ -1,7 +1,7 @@
-defmodule BuildyPush.TopicTest do
-  use BuildyPush.ModelCase
+defmodule Hermex.TopicTest do
+  use Hermex.ModelCase
 
-  alias BuildyPush.Topic
+  alias Hermex.Topic
 
   @invalid_attrs [
     %{}, # name is required

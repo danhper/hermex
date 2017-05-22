@@ -1,7 +1,7 @@
-defmodule BuildyPush.PushexAppManagerTest do
-  use BuildyPush.ModelCase
+defmodule Hermex.PushexAppManagerTest do
+  use Hermex.ModelCase
 
-  alias BuildyPush.PushexAppManager
+  alias Hermex.PushexAppManager
 
   test "find_app when app does not exist" do
     refute PushexAppManager.find_app(:gcm, "foo")
@@ -26,18 +26,18 @@ defmodule BuildyPush.PushexAppManagerTest do
     app = insert(:apns_app, settings: %{cert: cert})
     assert PushexAppManager.find_app(:apns, app.name)
     assert Repo.delete!(app)
-    refute BuildyPush.Repo.get(BuildyPush.App, app.id)
+    refute Hermex.Repo.get(Hermex.App, app.id)
     assert PushexAppManager.find_app(:apns, app.name)
   end
 
   test "find_app invalidates cache" do
-    Application.put_env(:buildy_push, BuildyPush.PushexAppManager, [cache_timeout: 0])
+    Application.put_env(:hermex, Hermex.PushexAppManager, [cache_timeout: 0])
     app = insert(:apns_app)
     assert PushexAppManager.find_app(:apns, app.name)
     assert Repo.delete!(app)
-    refute BuildyPush.Repo.get(BuildyPush.App, app.id)
+    refute Hermex.Repo.get(Hermex.App, app.id)
     refute PushexAppManager.find_app(:apns, app.name)
   after
-    Application.put_env(:buildy_push, BuildyPush.PushexAppManager, [cache_timeout: 3600])
+    Application.put_env(:hermex, Hermex.PushexAppManager, [cache_timeout: 3600])
   end
 end

@@ -1,12 +1,12 @@
-defmodule BuildyPush.DeviceView do
-  use BuildyPush.Web, :view
+defmodule Hermex.DeviceView do
+  use Hermex.Web, :view
 
   def render("index.json", %{devices: devices}) do
-    %{data: render_many(devices, BuildyPush.DeviceView, "device.json")}
+    %{data: render_many(devices, Hermex.DeviceView, "device.json")}
   end
 
   def render("show.json", %{device: device}) do
-    %{data: render_one(device, BuildyPush.DeviceView, "device.json")}
+    %{data: render_one(device, Hermex.DeviceView, "device.json")}
   end
 
   def render("device.json", %{device: device}) do

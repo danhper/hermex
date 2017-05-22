@@ -1,5 +1,5 @@
-defmodule BuildyPush.Message do
-  use BuildyPush.Web, :model
+defmodule Hermex.Message do
+  use Hermex.Web, :model
 
   schema "messages" do
     field :data, :map
@@ -8,7 +8,7 @@ defmodule BuildyPush.Message do
     field :sent_at, :utc_datetime
     field :scheduled_at, :utc_datetime
     field :options, :map, default: %{}
-    belongs_to :topic, BuildyPush.Topic
+    belongs_to :topic, Hermex.Topic
 
     timestamps()
   end

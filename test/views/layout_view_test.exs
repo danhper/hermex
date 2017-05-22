@@ -1,3 +1,3 @@
-defmodule BuildyPush.LayoutViewTest do
-  use BuildyPush.ConnCase, async: true
+defmodule Hermex.LayoutViewTest do
+  use Hermex.ConnCase, async: true
 end

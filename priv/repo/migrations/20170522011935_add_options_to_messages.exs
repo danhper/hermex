@@ -1,4 +1,4 @@
-defmodule BuildyPush.Repo.Migrations.AddOptionsToMessages do
+defmodule Hermex.Repo.Migrations.AddOptionsToMessages do
   use Ecto.Migration
 
   def change do

@@ -1,7 +1,7 @@
-defmodule BuildyPush.SubscriptionController do
-  use BuildyPush.Web, :controller
+defmodule Hermex.SubscriptionController do
+  use Hermex.Web, :controller
 
-  alias BuildyPush.Subscription
+  alias Hermex.Subscription
 
   plug :scrub_params, "subscription" when action in [:create]
 
@@ -37,10 +37,10 @@ defmodule BuildyPush.SubscriptionController do
   end
 
   defp find_topic(%{"topic_id" => app_id}) do
-    Repo.get!(BuildyPush.Topic, app_id)
+    Repo.get!(Hermex.Topic, app_id)
   end
   defp find_topic(%{"topic_name" => topic_name}) do
-    Repo.get_by!(BuildyPush.Topic, name: topic_name)
+    Repo.get_by!(Hermex.Topic, name: topic_name)
   end
-  defp find_topic(_), do: raise BuildyPush.BadRequestException, "need topic_name or topic_id"
+  defp find_topic(_), do: raise Hermex.BadRequestException, "need topic_name or topic_id"
 end

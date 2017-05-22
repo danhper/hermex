@@ -1,22 +1,22 @@
-defmodule BuildyPush do
+defmodule Hermex do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(BuildyPush.Endpoint, []),
-      supervisor(BuildyPush.Repo, []),
-      supervisor(BuildyPush.MessageProcessor.Supervisor, []),
-      worker(BuildyPush.PushexAppManager, [])
+      supervisor(Hermex.Endpoint, []),
+      supervisor(Hermex.Repo, []),
+      supervisor(Hermex.MessageProcessor.Supervisor, []),
+      worker(Hermex.PushexAppManager, [])
     ]
 
-    opts = [strategy: :one_for_one, name: BuildyPush.Supervisor]
+    opts = [strategy: :one_for_one, name: Hermex.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   def config_change(changed, _new, removed) do
-    BuildyPush.Endpoint.config_change(changed, removed)
+    Hermex.Endpoint.config_change(changed, removed)
     :ok
   end
 end

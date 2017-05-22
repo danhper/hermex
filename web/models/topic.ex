@@ -1,11 +1,11 @@
-defmodule BuildyPush.Topic do
-  use BuildyPush.Web, :model
+defmodule Hermex.Topic do
+  use Hermex.Web, :model
 
   schema "topics" do
     field :name, :string
 
-    has_many :messages, BuildyPush.Message
-    has_many :subscriptions, BuildyPush.Subscription
+    has_many :messages, Hermex.Message
+    has_many :subscriptions, Hermex.Subscription
 
     timestamps()
   end
