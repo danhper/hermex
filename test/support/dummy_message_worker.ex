@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageWorker.Dummy do
+defmodule Hermex.MessageWorker.Dummy do
   use GenServer
 
-  @behaviour BuildyPush.MessageProcessor.Worker
+  @behaviour Hermex.MessageProcessor.Worker
 
   def start_link do
     GenServer.start_link(__MODULE__, %{watcher: nil}, name: __MODULE__)

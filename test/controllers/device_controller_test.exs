@@ -1,7 +1,7 @@
-defmodule BuildyPush.DeviceControllerTest do
-  use BuildyPush.ConnCase
+defmodule Hermex.DeviceControllerTest do
+  use Hermex.ConnCase
 
-  alias BuildyPush.Device
+  alias Hermex.Device
   @invalid_attrs %{token: ""}
 
   setup %{conn: conn} do
@@ -34,7 +34,7 @@ defmodule BuildyPush.DeviceControllerTest do
   end
 
   test "allows to send app_name and platform instead of app_id", %{conn: conn, attrs: attrs} do
-    app = Repo.get!(BuildyPush.App, attrs.app_id)
+    app = Repo.get!(Hermex.App, attrs.app_id)
     attrs = attrs |> Map.delete(:app_id) |> Map.merge(%{app_name: app.name, platform: app.platform})
     conn = post conn, device_path(conn, :create), device: attrs
     assert json_response(conn, 201)["data"]["id"]

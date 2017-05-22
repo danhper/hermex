@@ -1,9 +1,9 @@
-defmodule BuildyPush.Subscription do
-  use BuildyPush.Web, :model
+defmodule Hermex.Subscription do
+  use Hermex.Web, :model
 
   schema "subscriptions" do
-    belongs_to :topic, BuildyPush.Topic
-    belongs_to :device, BuildyPush.Device
+    belongs_to :topic, Hermex.Topic
+    belongs_to :device, Hermex.Device
 
     timestamps()
   end

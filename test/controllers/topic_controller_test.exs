@@ -1,7 +1,7 @@
-defmodule BuildyPush.TopicControllerTest do
-  use BuildyPush.ConnCase
+defmodule Hermex.TopicControllerTest do
+  use Hermex.ConnCase
 
-  alias BuildyPush.Topic
+  alias Hermex.Topic
   @invalid_attrs %{name: "a"}
 
   setup %{conn: conn} do

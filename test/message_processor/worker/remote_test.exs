@@ -1,7 +1,7 @@
-defmodule BuildyPush.MessageWorker.RemoteTest do
-  use BuildyPush.WorkerCase
+defmodule Hermex.MessageWorker.RemoteTest do
+  use Hermex.WorkerCase
 
-  alias BuildyPush.MessageProcessor.Worker.Remote
+  alias Hermex.MessageProcessor.Worker.Remote
 
   setup do
     topic = insert(:topic)
@@ -16,7 +16,7 @@ defmodule BuildyPush.MessageWorker.RemoteTest do
     notification = %{title: "Hello", body: body}
     message = insert(:message, topic_id: topic.id, data: notification, sender_key: "that-would-be-me")
     assert {:noreply, %{}} = Remote.handle_cast({:send_message, message}, %{})
-    message = Repo.get!(BuildyPush.Message, message.id)
+    message = Repo.get!(Hermex.Message, message.id)
     assert message.recipients_count == 5
     assert Timex.compare(Timex.now(), message.sent_at, :seconds)
     assert [{{:ok, res}, req, _}] = Pushex.Sandbox.wait_notifications

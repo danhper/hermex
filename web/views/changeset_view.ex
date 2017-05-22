@@ -1,11 +1,11 @@
-defmodule BuildyPush.ChangesetView do
-  use BuildyPush.Web, :view
+defmodule Hermex.ChangesetView do
+  use Hermex.Web, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `BuildyPush.ErrorHelpers.translate_error/1` for more details.
+  `Hermex.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

@@ -1,4 +1,4 @@
-defmodule BuildyPush.ChannelCase do
+defmodule Hermex.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -20,18 +20,18 @@ defmodule BuildyPush.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias BuildyPush.Repo
+      alias Hermex.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
 
       # The default endpoint for testing
-      @endpoint BuildyPush.Endpoint
+      @endpoint Hermex.Endpoint
     end
   end
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Hermex.Repo)
   end
 end

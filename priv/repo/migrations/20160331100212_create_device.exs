@@ -1,4 +1,4 @@
-defmodule BuildyPush.Repo.Migrations.CreateDevice do
+defmodule Hermex.Repo.Migrations.CreateDevice do
   use Ecto.Migration
 
   def change do

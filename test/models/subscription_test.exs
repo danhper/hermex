@@ -1,7 +1,7 @@
-defmodule BuildyPush.SubscriptionTest do
-  use BuildyPush.ModelCase
+defmodule Hermex.SubscriptionTest do
+  use Hermex.ModelCase
 
-  alias BuildyPush.Subscription
+  alias Hermex.Subscription
 
   @invalid_attrs %{}
 

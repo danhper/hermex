@@ -1,10 +1,10 @@
-defmodule BuildyPush.Mixfile do
+defmodule Hermex.Mixfile do
   use Mix.Project
 
   @version "0.0.15"
 
   def project do
-    [app: :buildy_push,
+    [app: :hermex,
      version: @version,
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -16,7 +16,7 @@ defmodule BuildyPush.Mixfile do
   end
 
   def application do
-    [mod: {BuildyPush, []},
+    [mod: {Hermex, []},
      applications: applications(Mix.env)]
   end
 

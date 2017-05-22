@@ -1,3 +1,3 @@
-defmodule BuildyPush.LayoutView do
-  use BuildyPush.Web, :view
+defmodule Hermex.LayoutView do
+  use Hermex.Web, :view
 end

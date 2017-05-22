@@ -1,5 +1,5 @@
-defmodule BuildyPush.Device do
-  use BuildyPush.Web, :model
+defmodule Hermex.Device do
+  use Hermex.Web, :model
 
   import Ecto.Query
 
@@ -7,7 +7,7 @@ defmodule BuildyPush.Device do
     field :token, :string
     field :custom_data, :map
 
-    belongs_to :app, BuildyPush.App
+    belongs_to :app, Hermex.App
 
     timestamps()
   end

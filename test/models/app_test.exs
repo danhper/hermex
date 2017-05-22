@@ -1,7 +1,7 @@
-defmodule BuildyPush.AppTest do
-  use BuildyPush.ModelCase
+defmodule Hermex.AppTest do
+  use Hermex.ModelCase
 
-  alias BuildyPush.App
+  alias Hermex.App
 
   test "changeset with valid attributes" do
     changeset = App.changeset(%App{}, params_for(:gcm_app))

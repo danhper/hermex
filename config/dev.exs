@@ -1,13 +1,13 @@
 use Mix.Config
 
-config :buildy_push, BuildyPush.Endpoint,
+config :hermex, Hermex.Endpoint,
   http: [port: 9090],
   debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: []
 
-config :buildy_push, BuildyPush.Endpoint,
+config :hermex, Hermex.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
@@ -21,10 +21,10 @@ config :logger, :console, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20
 
-config :buildy_push, BuildyPush.Repo,
+config :hermex, Hermex.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "buildy_push_dev",
+  database: "hermex_dev",
   hostname: "localhost",
   pool_size: 10

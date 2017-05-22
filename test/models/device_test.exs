@@ -1,7 +1,7 @@
-defmodule BuildyPush.DeviceTest do
-  use BuildyPush.ModelCase
+defmodule Hermex.DeviceTest do
+  use Hermex.ModelCase
 
-  alias BuildyPush.Device
+  alias Hermex.Device
 
   @invalid_attrs %{}
 

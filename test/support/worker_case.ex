@@ -1,16 +1,16 @@
-defmodule BuildyPush.WorkerCase do
+defmodule Hermex.WorkerCase do
   use ExUnit.CaseTemplate
 
   using do
     quote do
-      alias BuildyPush.Repo
+      alias Hermex.Repo
 
-      import BuildyPush.WorkerCase
-      import BuildyPush.Factory
+      import Hermex.WorkerCase
+      import Hermex.Factory
     end
   end
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BuildyPush.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Hermex.Repo)
   end
 end

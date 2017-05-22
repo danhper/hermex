@@ -1,5 +1,5 @@
-defmodule BuildyPush.AppView do
-  use BuildyPush.Web, :view
+defmodule Hermex.AppView do
+  use Hermex.Web, :view
 
   def render("index.json", %{apps: apps_paginator}) do
     render_many_with_metadata(apps_paginator, __MODULE__, "app.json")

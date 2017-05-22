@@ -1,7 +1,7 @@
-defmodule BuildyPush.AppControllerTest do
-  use BuildyPush.ConnCase
+defmodule Hermex.AppControllerTest do
+  use Hermex.ConnCase
 
-  alias BuildyPush.App
+  alias Hermex.App
 
   @invalid_attrs %{platform: "foobar"}
 

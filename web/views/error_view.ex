@@ -1,5 +1,5 @@
-defmodule BuildyPush.ErrorView do
-  use BuildyPush.Web, :view
+defmodule Hermex.ErrorView do
+  use Hermex.Web, :view
 
   def render("400.json", %{reason: reason}) do
     %{errors: Exception.message(reason)}

@@ -1,8 +1,8 @@
-defmodule BuildyPush.MessageProcessor.Dispatcher do
+defmodule Hermex.MessageProcessor.Dispatcher do
   use GenServer
 
-  alias BuildyPush.MessageProcessor.Worker
-  alias BuildyPush.MessageProcessor.Scheduler
+  alias Hermex.MessageProcessor.Worker
+  alias Hermex.MessageProcessor.Scheduler
 
   def start_link() do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
@@ -28,16 +28,16 @@ defmodule BuildyPush.MessageProcessor.Dispatcher do
   end
 
   defp do_send_pending_messages() do
-    BuildyPush.Message.pending()
-    |> BuildyPush.Repo.all()
+    Hermex.Message.pending()
+    |> Hermex.Repo.all()
     |> Enum.each(&do_process_message/1)
   end
 
-  defp do_process_message(%BuildyPush.Message{scheduled_at: nil} = message) do
+  defp do_process_message(%Hermex.Message{scheduled_at: nil} = message) do
     Worker.send_message(message)
   end
 
-  defp do_process_message(%BuildyPush.Message{scheduled_at: scheduled_at} = message) do
+  defp do_process_message(%Hermex.Message{scheduled_at: scheduled_at} = message) do
     case Timex.compare(Timex.now(), scheduled_at) do
       -1 ->
         Scheduler.send_message(message)

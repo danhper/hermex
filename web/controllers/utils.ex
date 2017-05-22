@@ -1,4 +1,4 @@
-defmodule BuildyPush.Controller.Utils do
+defmodule Hermex.Controller.Utils do
   import Plug.Conn
   import Phoenix.Controller
 
@@ -20,7 +20,7 @@ defmodule BuildyPush.Controller.Utils do
   def render_unprocessable(conn, changeset) do
     conn
     |> put_status(:unprocessable_entity)
-    |> render(BuildyPush.ChangesetView, "error.json", changeset: changeset)
+    |> render(Hermex.ChangesetView, "error.json", changeset: changeset)
   end
 
   defp get_status(opts) do

@@ -1,8 +1,8 @@
-defmodule BuildyPush.MessageController do
-  use BuildyPush.Web, :controller
+defmodule Hermex.MessageController do
+  use Hermex.Web, :controller
 
-  alias BuildyPush.Message
-  alias BuildyPush.MessageProcessor.Dispatcher, as: MessageDispatcher
+  alias Hermex.Message
+  alias Hermex.MessageProcessor.Dispatcher, as: MessageDispatcher
 
   plug :scrub_params, "message" when action in [:create]
 
@@ -30,7 +30,7 @@ defmodule BuildyPush.MessageController do
     render(conn, "show.json", message: message)
   end
 
-  defp find_topic(%{"topic_id" => topic_id}), do: Repo.get!(BuildyPush.Topic, topic_id)
-  defp find_topic(%{"topic_name" => topic_name}), do: Repo.get_by!(BuildyPush.Topic, name: topic_name)
-  defp find_topic(_), do: raise BuildyPush.BadRequestException, "need topic_id or topic_name"
+  defp find_topic(%{"topic_id" => topic_id}), do: Repo.get!(Hermex.Topic, topic_id)
+  defp find_topic(%{"topic_name" => topic_name}), do: Repo.get_by!(Hermex.Topic, name: topic_name)
+  defp find_topic(_), do: raise Hermex.BadRequestException, "need topic_id or topic_name"
 end

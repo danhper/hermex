@@ -1,4 +1,4 @@
-defmodule BuildyPush.Repo.Migrations.CreateTopic do
+defmodule Hermex.Repo.Migrations.CreateTopic do
   use Ecto.Migration
 
   def change do

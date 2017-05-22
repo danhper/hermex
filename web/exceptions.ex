@@ -1,7 +1,7 @@
-defmodule BuildyPush.BadRequestException do
+defmodule Hermex.BadRequestException do
   defexception [:message]
 end
 
-defimpl Plug.Exception, for: BuildyPush.BadRequestException do
+defimpl Plug.Exception, for: Hermex.BadRequestException do
   def status(_exception), do: 400
 end

@@ -1,10 +1,10 @@
-defmodule BuildyPush.MessageProcessor.DispatcherTest do
-  use BuildyPush.WorkerCase
+defmodule Hermex.MessageProcessor.DispatcherTest do
+  use Hermex.WorkerCase
 
-  alias BuildyPush.MessageProcessor.Dispatcher
+  alias Hermex.MessageProcessor.Dispatcher
 
   setup do
-    BuildyPush.MessageWorker.Dummy.request_notification(self())
+    Hermex.MessageWorker.Dummy.request_notification(self())
     :ok
   end
 
@@ -29,7 +29,7 @@ defmodule BuildyPush.MessageProcessor.DispatcherTest do
   end
 
   test "send pending messages" do
-    Ecto.Adapters.SQL.Sandbox.allow(BuildyPush.Repo, self(), Process.whereis(Dispatcher))
+    Ecto.Adapters.SQL.Sandbox.allow(Hermex.Repo, self(), Process.whereis(Dispatcher))
     _not_sent = [
       insert(:message),
       insert(:message, scheduled_at: Timex.now(), sent_at: Timex.now()),

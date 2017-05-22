@@ -1,4 +1,4 @@
-defmodule BuildyPush.Repo.Migrations.CreateSubscription do
+defmodule Hermex.Repo.Migrations.CreateSubscription do
   use Ecto.Migration
 
   def change do
