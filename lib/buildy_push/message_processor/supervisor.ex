@@ -1,6 +1,8 @@
 defmodule BuildyPush.MessageProcessor.Supervisor do
   use Supervisor
 
+  alias BuildyPush.MessageProcessor.Scheduler.Supervisor, as: SchedulerSupervisor
+
   def start_link() do
     Supervisor.start_link(__MODULE__, :ok)
   end
@@ -9,11 +11,12 @@ defmodule BuildyPush.MessageProcessor.Supervisor do
     message_worker = Application.get_env(:buildy_push, :message_worker_impl)
 
     children = [
-      worker(BuildyPush.MessageProcessor.Dispatcher, []),
-      worker(message_worker, [])
+      worker(message_worker, []),
+      supervisor(SchedulerSupervisor, []),
+      worker(BuildyPush.MessageProcessor.Dispatcher, [])
     ]
 
-    opts = [strategy: :one_for_one, name: BuildyPush.MessageProcessor.Supervisor]
+    opts = [strategy: :rest_for_one, name: BuildyPush.MessageProcessor.Supervisor]
     supervise(children, opts)
   end
 end

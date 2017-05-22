@@ -25,4 +25,9 @@ defmodule BuildyPush.Message do
     optional_fields(:all) ++ ~w(recipients_count sent_at)a
   end
   defp optional_fields(_), do: @optional_fields
+
+  def pending(query \\ __MODULE__) do
+    from m in query,
+      where: is_nil(m.sent_at) and not is_nil(m.scheduled_at)
+  end
 end

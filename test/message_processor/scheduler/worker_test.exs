@@ -13,8 +13,7 @@ defmodule BuildyPush.MessageProcessor.Scheduler.WorkerTest do
 
   test "message with scheduled_at in the future" do
     BuildyPush.MessageWorker.Dummy.request_notification(self())
-    message = insert(:message, scheduled_at: Timex.shift(Timex.now(), milliseconds: 50))
-    message_id = message.id
+    %{id: message_id} = message = insert(:message, scheduled_at: Timex.shift(Timex.now(), milliseconds: 50))
     assert {:ok, pid} = GenServer.start_link(SchedulerWorker, message)
     ref = Process.monitor(pid)
     assert Process.alive?(pid)

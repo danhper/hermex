@@ -1,6 +1,10 @@
 defmodule BuildyPush.MessageProcessor.Scheduler.Worker do
   use GenServer
 
+  def start_link(message) do
+    GenServer.start_link(__MODULE__, message)
+  end
+
   def init(message) do
     case compute_milliseconds_timeout(message) do
       n when n <= 0 ->

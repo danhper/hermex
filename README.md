@@ -1,4 +1,4 @@
-# PushServer
+# Hermex
 
 This module provides a push server that can handle the following things
 
