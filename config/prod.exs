@@ -2,7 +2,7 @@ use Mix.Config
 
 config :hermex, Hermex.Endpoint,
   http: [port: System.get_env("PORT") || raise("please provide PORT")],
-  url: [host: System.get_env("URL_HOST"), scheme: System.get_env("URL_SCHEME")],
+  url: [host: System.get_env("URL_HOST"), scheme: System.get_env("URL_SCHEME"), port: System.get_env("URL_PORT") || raise("please provide URL_PORT")],
   secret_key_base: System.get_env("SECRET_KEY_BASE") || raise("please provide SECRET_KEY_BASE"),
   server: true
 
