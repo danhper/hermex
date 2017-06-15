@@ -29,7 +29,7 @@ defmodule Hermex.Mixfile do
   defp applications(:test), do: applications(:all) ++ [:ex_machina]
   defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                                 :phoenix_ecto, :postgrex, :pushex, :joken, :tzdata, :timex,
-                                :phoenix_pubsub, :scrivener_ecto]
+                                :phoenix_pubsub, :scrivener_ecto, :ex_admin, :basic_auth]
 
   defp deps do
     [{:phoenix, "~> 1.2"},
