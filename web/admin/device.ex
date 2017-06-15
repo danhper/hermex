@@ -6,10 +6,19 @@ defmodule Hermex.ExAdmin.Device do
       selectable_column()
 
       column :id
-      column :token
       column :app
+      column :inserted_at
 
       actions()
+    end
+
+    show _topic do
+      attributes_table do
+        row :id
+        row :token
+        row :custom_data
+        row :inserted_at
+      end
     end
 
     form device do

@@ -7,7 +7,6 @@ defmodule Hermex.ExAdmin.App do
 
       column :id
       column :name
-      column :settings
 
       actions()
     end

@@ -3,6 +3,7 @@ defmodule Hermex.ExAdmin.Dashboard do
 
   require Ecto.Query
   import Ecto.Query
+  import Hermex.Router.Helpers
 
   register_page "Dashboard" do
     menu priority: 1, label: "Dashboard"
@@ -13,8 +14,10 @@ defmodule Hermex.ExAdmin.Dashboard do
             order_by(Hermex.Message, desc: :id)
             |> limit(5)
             |> Hermex.Repo.all
+            |> Hermex.Repo.preload(:topic)
             |> table_for do
-              column "data", fn(m) -> a m.data, href: "/admin/messages/#{m.id}" end
+              column "id", fn(m) -> a m.id, href: admin_resource_path(Hermex.Endpoint, :show, :messages, m.id) end
+              column "topic", &(text &1.topic.name)
               column "recipients_count", &(text &1.recipients_count)
               column "sent_at", &(text &1.sent_at)
             end
@@ -28,11 +31,10 @@ defmodule Hermex.ExAdmin.Dashboard do
             |> Hermex.Repo.all
             |> Hermex.Repo.preload(:app)
             |> table_for do
+              column "id", fn(d) -> a d.id, href: admin_resource_path(Hermex.Endpoint, :show, :devices, d.id) end
               column "app", &(text &1.app.name)
               column "platform", &(text &1.app.platform)
-              column "token", fn(d) ->
-                a d.token, href: "/admin/devices/#{d.id}"
-              end
+              column "token", &(text &1.token)
             end
           end
         end
