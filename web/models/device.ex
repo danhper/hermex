@@ -15,7 +15,7 @@ defmodule Hermex.Device do
   @required_fields ~w(app_id token)a
   @optional_fields ~w(custom_data)a
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ :invalid) do
     model
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)

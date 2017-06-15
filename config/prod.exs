@@ -24,3 +24,8 @@ config :logger, Rollbax.Logger,
 config :rollbax,
   environment: "production",
   access_token: System.get_env("ROLLBAR_TOKEN") || raise("please provide ROLLBAR_TOKEN")
+
+config :hermex, :admin,
+  protected: true,
+  username: System.get_env("ADMIN_USERNAME") || raise("please provide ADMIN_USERNAME"),
+  password: System.get_env("ADMIN_PASSWORD") || raise("please provide ADMIN_PASSWORD")

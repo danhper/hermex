@@ -27,8 +27,29 @@ config :logger, :console,
 config :pushex,
   app_manager_impl: Hermex.PushexAppManager
 
+config :ex_admin,
+  repo: Hermex.Repo,
+  module: Hermex,
+  modules: [
+    Hermex.ExAdmin.Dashboard,
+    Hermex.ExAdmin.App,
+    Hermex.ExAdmin.Device,
+    Hermex.ExAdmin.Message,
+    Hermex.ExAdmin.Topic,
+    Hermex.ExAdmin.Subscription
+  ]
+
+config :hermex, :admin,
+  enable: true,
+  protected: false,
+  username: "hermex",
+  password: "password",
+  realm: "Hermex Admin"
+
 import_config "#{Mix.env}.exs"
 
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}

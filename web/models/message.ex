@@ -16,6 +16,10 @@ defmodule Hermex.Message do
   @required_fields ~w(data)a
   @optional_fields ~w(sender_key options scheduled_at)a
 
+  def changeset(model, params \\ :invalid) do
+    changeset(model, :create, params)
+  end
+
   def changeset(model, action, params) do
     model
     |> cast(params, @required_fields ++ optional_fields(action))

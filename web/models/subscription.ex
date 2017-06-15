@@ -11,7 +11,7 @@ defmodule Hermex.Subscription do
   @required_fields ~w(topic_id device_id)a
   @optional_fields ~w()a
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ :invalid) do
     model
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)

@@ -17,7 +17,7 @@ defmodule Hermex.App do
   @gcm_required_fields ~w(auth_key)
   @apns_required_fields ~w(cert key)
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ :invalid) do
     model
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
@@ -46,7 +46,8 @@ defmodule Hermex.App do
 
   defp check_settings(changeset, required_fields) do
     settings = get_change(changeset, :settings)
-    missing_keys = required_fields -- Map.keys(settings)
+    changeset_keys = settings |> Map.keys() |> Enum.map(&to_string(&1))
+    missing_keys = required_fields -- changeset_keys
     if Enum.empty?(missing_keys) do
       changeset
     else
