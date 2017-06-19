@@ -43,7 +43,7 @@ defmodule Hermex.Mixfile do
      {:exrm,    "~> 1.0"},
      {:timex,   "~> 3.0"},
      {:pushex,  "~> 0.2"},
-     {:ex_admin, github: "tuvistavie/ex_admin"},
+     {:ex_admin, github: "smpallen99/ex_admin"},
      {:basic_auth, "~> 2.0"},
      {:scrivener_ecto, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: [:dev, :docker]},

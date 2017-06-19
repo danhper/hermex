@@ -54,4 +54,6 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
+config :phoenix, :filter_parameters, ["password", "settings"]
+
 config :xain, :after_callback, {Phoenix.HTML, :raw}

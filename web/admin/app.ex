@@ -22,8 +22,18 @@ defmodule Hermex.ExAdmin.App do
         row :name
         row :apns_certificate, &(raw text_to_html(Map.get(&1.settings, "cert") || ""))
         row :apns_key, &(raw text_to_html(Map.get(&1.settings, "key") || ""))
-        row :gcm_auth_key, &(raw text_to_html(Map.get(&1.settings, "auth_key", "")))
+        row :gcm_auth_key, &(raw text_to_html(Map.get(&1.settings, "auth_key") || ""))
         row :inserted_at
+      end
+    end
+
+    defmacro make_textarea(app, conn, name) do
+      quote bind_quoted: [app: app, conn: conn, name: name] do
+        content do
+          elem(wrap_item(app, name, "app", "APNS #{name}", nil, %{}, conn.params, false, fn(ext_name) ->
+            build_control(:text, app.settings, %{name: "app[settings][#{name}]"}, "", name, ext_name)
+          end), 0)
+        end
       end
     end
 
@@ -32,14 +42,14 @@ defmodule Hermex.ExAdmin.App do
         input app, :name
         input app, :platform, collection: ~w(apns gcm)
         input app, "GCM_auth_key", type: :string, name: "app[settings][auth_key]", value: app.settings["auth_key"]
-        input app, "APNS_certificate", type: :text, name: "app[settings][cert]", value: app.settings["cert"]
-        input app, "APNS_key", type: :text, name: "app[settings][key]", value: app.settings["key"]
+        _ = make_textarea(app, conn, "cert")
+        _ = make_textarea(app, conn, "key")
       end
 
       javascript do
         """
         $(document).ready(function() {
-          var inputs = ['#app_GCM_auth_key_input', '#app_APNS_certificate_input', '#app_APNS_key_input'];
+          var inputs = ['#app_GCM_auth_key_input', '#app_cert_input', '#app_key_input'];
           var updateInputs = function (currentPlatform) {
             $.each(inputs, function (i, selector) {
               if (!currentPlatform || (currentPlatform === 'gcm' && i !== 0) || (currentPlatform === 'apns' && i === 0)) {

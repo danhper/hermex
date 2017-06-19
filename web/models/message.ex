@@ -14,7 +14,7 @@ defmodule Hermex.Message do
   end
 
   @required_fields ~w(data)a
-  @optional_fields ~w(sender_key options scheduled_at)a
+  @optional_fields ~w(sender_key options scheduled_at topic_id)a
 
   def changeset(model, params \\ :invalid) do
     changeset(model, :create, params)
