@@ -15,6 +15,7 @@ defmodule Hermex.ExAdmin.Device do
     show _topic do
       attributes_table do
         row :id
+        row :app
         row :token
         row :custom_data
         row :inserted_at

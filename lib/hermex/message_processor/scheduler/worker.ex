@@ -25,8 +25,6 @@ defmodule Hermex.MessageProcessor.Scheduler.Worker do
   end
 
   defp compute_milliseconds_timeout(%Hermex.Message{scheduled_at: scheduled_at}) do
-    scheduled_at
-    |> Timex.diff(Timex.now())
-    |> Integer.floor_div(1000)
+    Timex.diff(scheduled_at, Timex.now(), :milliseconds)
   end
 end

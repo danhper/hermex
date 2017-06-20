@@ -33,6 +33,12 @@ defmodule Hermex.ExAdmin.Message do
         |> update_in([:message, :options], &(Poison.decode!(&1 || "")))
         {conn, params}
       end
+
+      after_filter :send_message, only: [:create]
+      def send_message(conn, _params, message, :create) do
+        Hermex.MessageProcessor.Dispatcher.process_message(message)
+        conn
+      end
     end
 
     form message do
@@ -69,6 +75,7 @@ defmodule Hermex.ExAdmin.Message do
               Phoenix.HTML.Tag.tag(:link, rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.7.0/jsoneditor.min.css"),
               Phoenix.HTML.Tag.tag(:link, rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"),
               content_tag(:script, "", src: "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"),
+              content_tag(:script, "", src: "https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data.min.js"),
               content_tag(:script, "", src: "https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.7.0/jsoneditor.min.js"),
               content_tag(:script, "", src: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js")
             ]
@@ -93,7 +100,8 @@ defmodule Hermex.ExAdmin.Message do
           var dataEditor = initJSON('#message_data', #{Poison.encode!(message.data || %{})});
           var optionsEditor = initJSON('#message_options', #{Poison.encode!(message.options || %{})});
           $('#message_scheduled_at').datetimepicker({
-            format: "YYYY-MM-DD HH:mm:ss"
+            format: "YYYY-MM-DD HH:mm:ssZ",
+            timeZone: "#{Timex.local().time_zone}"
           });
 
           $('#new_message').on('submit', function (e) {

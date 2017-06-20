@@ -22,7 +22,7 @@ defmodule Hermex.Message do
 
   def changeset(model, action, params) do
     model
-    |> cast(params, @required_fields ++ optional_fields(action))
+    |> cast(parse_datetime(params), @required_fields ++ optional_fields(action))
     |> validate_required(@required_fields)
   end
 
@@ -30,6 +30,14 @@ defmodule Hermex.Message do
     optional_fields(:all) ++ ~w(recipients_count sent_at)a
   end
   defp optional_fields(_), do: @optional_fields
+
+  defp parse_datetime(%{scheduled_at: scheduled_at} = params) when is_binary(scheduled_at) do
+    case DateTime.from_iso8601(scheduled_at) do
+      {:ok, parsed, _offset} -> Map.put(params, :scheduled_at, parsed)
+      _ -> params
+    end
+  end
+  defp parse_datetime(params), do: params
 
   def pending(query \\ __MODULE__) do
     from m in query,

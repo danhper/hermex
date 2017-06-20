@@ -31,7 +31,7 @@ defmodule Hermex.ExAdmin.App do
       quote bind_quoted: [app: app, conn: conn, name: name] do
         content do
           elem(wrap_item(app, name, "app", "APNS #{name}", nil, %{}, conn.params, false, fn(ext_name) ->
-            build_control(:text, app.settings, %{name: "app[settings][#{name}]"}, "", name, ext_name)
+            build_control(:text, %{name => Map.get(app.settings || %{}, Atom.to_string(name), "")}, %{name: "app[settings][#{name}]"}, "", name, ext_name)
           end), 0)
         end
       end
@@ -41,9 +41,9 @@ defmodule Hermex.ExAdmin.App do
       inputs do
         input app, :name
         input app, :platform, collection: ~w(apns gcm)
-        input app, "GCM_auth_key", type: :string, name: "app[settings][auth_key]", value: app.settings["auth_key"]
-        _ = make_textarea(app, conn, "cert")
-        _ = make_textarea(app, conn, "key")
+        input app, :GCM_auth_key, type: :string, name: "app[settings][auth_key]", value: app.settings["auth_key"]
+        _ = make_textarea(app, conn, :cert)
+        _ = make_textarea(app, conn, :key)
       end
 
       javascript do
