@@ -100,8 +100,7 @@ defmodule Hermex.ExAdmin.Message do
           var dataEditor = initJSON('#message_data', #{Poison.encode!(message.data || %{})});
           var optionsEditor = initJSON('#message_options', #{Poison.encode!(message.options || %{})});
           $('#message_scheduled_at').datetimepicker({
-            format: "YYYY-MM-DD HH:mm:ssZ",
-            timeZone: "#{Timex.local().time_zone}"
+            format: "YYYY-MM-DD HH:mm:ssZ"
           });
 
           $('#new_message').on('submit', function (e) {

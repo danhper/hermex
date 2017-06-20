@@ -1,7 +1,7 @@
 defmodule Hermex.Mixfile do
   use Mix.Project
 
-  @version "0.0.20"
+  @version "0.0.21"
 
   def project do
     [app: :hermex,
