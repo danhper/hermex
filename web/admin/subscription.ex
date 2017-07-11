@@ -13,6 +13,8 @@ defmodule Hermex.ExAdmin.Subscription do
       actions()
     end
 
+    filter [:topic, :inserted_at]
+
     show _subscription do
       attributes_table do
         row :id
