@@ -22,6 +22,7 @@ defmodule Hermex.ExAdmin.App do
         row :name
         row :apns_certificate, &(raw text_to_html(Map.get(&1.settings, "cert") || ""))
         row :apns_key, &(raw text_to_html(Map.get(&1.settings, "key") || ""))
+        row :apns_env, &(raw text_to_html(Map.get(&1.settings, "env") || ""))
         row :gcm_auth_key, &(raw text_to_html(Map.get(&1.settings, "auth_key") || ""))
         row :inserted_at
       end
@@ -30,9 +31,9 @@ defmodule Hermex.ExAdmin.App do
     defmacro make_textarea(app, conn, name) do
       quote bind_quoted: [app: app, conn: conn, name: name] do
         content do
-          elem(wrap_item(app, name, "app", "APNS #{name}", nil, %{}, conn.params, false, fn(ext_name) ->
+          wrap_item(app, name, "app", "APNS #{name}", nil, %{}, conn.params, false, fn(ext_name) ->
             build_control(:text, %{name => Map.get(app.settings || %{}, Atom.to_string(name), "")}, %{name: "app[settings][#{name}]"}, "", name, ext_name)
-          end), 0)
+          end) |> elem(0)
         end
       end
     end
@@ -44,12 +45,13 @@ defmodule Hermex.ExAdmin.App do
         input app, :GCM_auth_key, type: :string, name: "app[settings][auth_key]", value: app.settings["auth_key"]
         _ = make_textarea(app, conn, :cert)
         _ = make_textarea(app, conn, :key)
+        input app, :APNS_env, name: "app[settings][env]", value: Map.get(app.settings || %{}, "env", "dev")
       end
 
       javascript do
         """
         $(document).ready(function() {
-          var inputs = ['#app_GCM_auth_key_input', '#app_cert_input', '#app_key_input'];
+          var inputs = ['#app_GCM_auth_key_input', '#app_cert_input', '#app_key_input', '#app_APNS_env_input'];
           var updateInputs = function (currentPlatform) {
             $.each(inputs, function (i, selector) {
               if (!currentPlatform || (currentPlatform === 'gcm' && i !== 0) || (currentPlatform === 'apns' && i === 0)) {

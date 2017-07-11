@@ -31,6 +31,7 @@ config :ex_admin,
   repo: Hermex.Repo,
   module: Hermex,
   logo_full: "<b>Hermex</b>",
+  logo_mini: "<b>H</b>x",
   footer: "Hermex: push notification server by <a href=\"https://github.com/tuvistavie\" target=\"_blank\">Daniel Perez</a> &nbsp;&copy #{DateTime.utc_now.year}",
   modules: [
     Hermex.ExAdmin.Dashboard,

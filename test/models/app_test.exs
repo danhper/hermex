@@ -23,4 +23,9 @@ defmodule Hermex.AppTest do
     changeset = App.changeset(%App{}, params_for(:gcm_app, name: app.name))
     assert {:error, _} = Repo.insert(changeset)
   end
+
+  test "changeset settings with crlf" do
+    changeset = App.changeset(%App{}, params_for(:apns_app, settings: %{key: "foo\r\nbar"}))
+    assert get_change(changeset, :settings).key == "foo\nbar"
+  end
 end

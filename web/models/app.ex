@@ -22,7 +22,8 @@ defmodule Hermex.App do
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> validate_inclusion(:platform, ~w(gcm apns))
-    |> validate_settings
+    |> validate_settings()
+    |> normalize_settings()
     |> unique_constraint(:name, name: :apps_name_platform_index)
   end
 
@@ -32,6 +33,21 @@ defmodule Hermex.App do
          platform when not is_nil(platform) <- get_change(changeset, :platform) do
       validate_settings(changeset, String.to_atom(platform))
     else
+      _ -> changeset
+    end
+  end
+
+  defp normalize_settings(changeset) do
+    changeset
+    |> crlf_to_lf(:cert)
+    |> crlf_to_lf(:key)
+  end
+
+  defp crlf_to_lf(changeset, key) do
+    case get_change(changeset, :settings, %{}) do
+      %{^key => value} = settings when is_binary(value) ->
+        new_value = String.replace(value, "\r\n", "\n")
+        put_change(changeset, :settings, Map.put(settings, key, new_value))
       _ -> changeset
     end
   end
