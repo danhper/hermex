@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :hermex, Hermex.Endpoint,
+config :hermex, HermexWeb.Endpoint,
   http: [port: 9091],
   server: false
 

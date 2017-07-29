@@ -25,17 +25,17 @@ defmodule Hermex.ConnCase do
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import Hermex.Router.Helpers
+      import HermexWeb.Router.Helpers
       import Hermex.Factory
 
       # The default endpoint for testing
-      @endpoint Hermex.Endpoint
+      @endpoint HermexWeb.Endpoint
     end
   end
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Hermex.Repo)
-    token = Hermex.Util.JWT.make_token(%{"iss" => "test_app"})
+    token = HermexWeb.Util.JWT.make_token(%{"iss" => "test_app"})
     conn =
       Phoenix.ConnTest.build_conn()
       |> Plug.Conn.put_req_header("authorization", "Bearer #{token}")

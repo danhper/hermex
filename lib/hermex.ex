@@ -5,7 +5,7 @@ defmodule Hermex do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(Hermex.Endpoint, []),
+      supervisor(HermexWeb.Endpoint, []),
       supervisor(Hermex.Repo, []),
       supervisor(Hermex.MessageProcessor.Supervisor, []),
       worker(Hermex.PushexAppManager, [])
@@ -16,7 +16,7 @@ defmodule Hermex do
   end
 
   def config_change(changed, _new, removed) do
-    Hermex.Endpoint.config_change(changed, removed)
+    HermexWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

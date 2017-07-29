@@ -1,13 +1,13 @@
 use Mix.Config
 
-config :hermex, Hermex.Endpoint,
+config :hermex, HermexWeb.Endpoint,
   http: [port: 9090],
   debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: []
 
-config :hermex, Hermex.Endpoint,
+config :hermex, HermexWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},

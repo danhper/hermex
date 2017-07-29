@@ -33,7 +33,7 @@ defmodule Hermex.MessageProcessor.Worker.Remote do
 
   defp update_message!(message, subscriptions) do
     params = %{recipients_count: length(subscriptions), sent_at: Timex.now()}
-    changeset = Hermex.Message.changeset(message, :internal_update, params)
+    changeset = Hermex.Push.Message.changeset(message, :internal_update, params)
     Hermex.Repo.update!(changeset)
   end
 end

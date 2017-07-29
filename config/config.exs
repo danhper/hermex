@@ -2,7 +2,7 @@ use Mix.Config
 
 config :apns, pools: []
 
-config :hermex, Hermex.Endpoint,
+config :hermex, HermexWeb.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "WmEoayLkaQTqdWnOTOm/qamFGHaDNHWwrHn7ZmMK58jkIvngCh63cah0XNoEuaIp",
@@ -29,17 +29,17 @@ config :pushex,
 
 config :ex_admin,
   repo: Hermex.Repo,
-  module: Hermex,
+  module: HermexWeb,
   logo_full: "<b>Hermex</b>",
   logo_mini: "<b>H</b>x",
   footer: "Hermex: push notification server by <a href=\"https://github.com/tuvistavie\" target=\"_blank\">Daniel Perez</a> &nbsp;&copy #{DateTime.utc_now.year}",
   modules: [
-    Hermex.ExAdmin.Dashboard,
-    Hermex.ExAdmin.App,
-    Hermex.ExAdmin.Device,
-    Hermex.ExAdmin.Message,
-    Hermex.ExAdmin.Topic,
-    Hermex.ExAdmin.Subscription
+    HermexWeb.ExAdmin.Dashboard,
+    HermexWeb.ExAdmin.App,
+    HermexWeb.ExAdmin.Device,
+    HermexWeb.ExAdmin.Message,
+    HermexWeb.ExAdmin.Topic,
+    HermexWeb.ExAdmin.Subscription
   ]
 
 config :hermex, :admin,

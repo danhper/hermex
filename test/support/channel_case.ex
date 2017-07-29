@@ -27,7 +27,7 @@ defmodule Hermex.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint Hermex.Endpoint
+      @endpoint HermexWeb.Endpoint
     end
   end
 

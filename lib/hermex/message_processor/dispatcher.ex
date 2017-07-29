@@ -28,16 +28,16 @@ defmodule Hermex.MessageProcessor.Dispatcher do
   end
 
   defp do_send_pending_messages() do
-    Hermex.Message.pending()
+    Hermex.Push.Message.pending()
     |> Hermex.Repo.all()
     |> Enum.each(&do_process_message/1)
   end
 
-  defp do_process_message(%Hermex.Message{scheduled_at: nil} = message) do
+  defp do_process_message(%Hermex.Push.Message{scheduled_at: nil} = message) do
     Worker.send_message(message)
   end
 
-  defp do_process_message(%Hermex.Message{scheduled_at: scheduled_at} = message) do
+  defp do_process_message(%Hermex.Push.Message{scheduled_at: scheduled_at} = message) do
     case Timex.compare(Timex.now(), scheduled_at) do
       -1 ->
         Scheduler.send_message(message)

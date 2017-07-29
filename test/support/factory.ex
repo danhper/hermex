@@ -2,7 +2,7 @@ defmodule Hermex.Factory do
   use ExMachina.Ecto, repo: Hermex.Repo
 
   def gcm_app_factory do
-    %Hermex.App{
+    %Hermex.Push.App{
       platform: "gcm",
       name: sequence(:gcm_app, &("gcm-app-#{&1}")),
       settings: %{
@@ -12,7 +12,7 @@ defmodule Hermex.Factory do
   end
 
   def apns_app_factory do
-    %Hermex.App{
+    %Hermex.Push.App{
       platform: "apns",
       name: sequence(:apns_app, &("apns-app-#{&1}")),
       settings: %{
@@ -22,27 +22,27 @@ defmodule Hermex.Factory do
   end
 
   def topic_factory do
-    %Hermex.Topic{
+    %Hermex.Push.Topic{
       name: sequence(:topic_name, &("topic-name-#{&1}"))
     }
   end
 
   def device_factory do
-    %Hermex.Device{
+    %Hermex.Push.Device{
       app_id: insert(:gcm_app).id,
       token: sequence(:device_token, &("device-token-#{&1}"))
     }
   end
 
   def subscription_factory do
-    %Hermex.Subscription{
+    %Hermex.Push.Subscription{
       topic_id: insert(:topic).id,
       device_id: insert(:device).id
     }
   end
 
   def message_factory do
-    %Hermex.Message{
+    %Hermex.Push.Message{
       topic_id: insert(:topic).id,
       data: %{body: "foobar"}
     }
